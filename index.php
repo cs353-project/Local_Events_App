@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Login</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
+    <?php
+        include("api/header.php");
+        insert_head("Login");
+    ?>
     <body>
         <section class="h-100 gradient-form" style="background-color: #eee;">
             <div class="container py-5 h-100">
@@ -18,9 +15,9 @@
                         <div class="card-body p-md-5 mx-md-4">
 
                             <div class="text-center">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                            <img src="images/EE_logo.png"
                                 style="width: 185px;" alt="logo">
-                            <h4 class="mt-1 mb-5 pb-1">Local Events App</h4>
+                            <h4 class="mt-1 mb-5 pb-1">Event Emitter</h4>
                             </div>
 
                             <form>
@@ -51,7 +48,7 @@
                         </div>
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="px-3 py-4 p-md-5 mx-md-4">
-                                <h4 class="mb-4">It is time to experience our amazing app!</h4>
+                                <h4 class="mb-4">It is time to experience Event Emitter!</h4>
                                 <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
