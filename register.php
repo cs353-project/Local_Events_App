@@ -43,6 +43,23 @@
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-1 w-50">
+                                            <input type="date" class="form-control" />
+                                            <label class="form-label">Your Birth Date</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-1 w-50">
+                                            <input type="radio" name="gender" value="female">Female
+                                            <input type="radio" name="gender" value="male">Male <br>
+                                            <label class="form-label">Your Gender</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
                                         <input type="email" class="form-control" />
