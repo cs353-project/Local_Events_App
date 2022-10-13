@@ -49,9 +49,10 @@
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="px-3 py-4 p-md-5 mx-md-4">
                                 <h4 class="mb-4">It is time to experience Event Emitter!</h4>
-                                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                <p class="small mb-0">EventEmitter is a web-based platform to create and join local events. 
+                                    In order to join events, users can search events based on their current locations or any location, date,  popularity, rating of the event and also they can filter based on the organizer and category. 
+                                    Users can also buy tickets for special events and send other users invitations. Both guests of the events and organizers can rate each other and these ratings are stored for each individual. 
+                                    Organizers can create events with given specifications and organizers edit their events until the end of registration time.
                                 </p>
                             </div>
                         </div>
