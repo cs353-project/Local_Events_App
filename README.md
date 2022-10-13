@@ -1,4 +1,4 @@
-# Local Events Application - *CS 353 Project*
+# Event Emitter - *CS 353 Project*
 
 This application gives opportunities to the users for creating and joining local events such as gatherings, concerts, games, etc.
 
