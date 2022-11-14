@@ -24,8 +24,8 @@
                                 <p>Please login to your account</p>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" class="form-control"/>
-                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control"/>
+                                    <label class="form-label">ID</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
