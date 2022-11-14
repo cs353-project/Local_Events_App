@@ -22,7 +22,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="text" class="form-control" />
-                                            <label class="form-label">Your Name</label>
+                                            <label class="form-label">Your First Name</label>
                                         </div>
                                     </div>
 
@@ -30,7 +30,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="text" class="form-control" />
-                                            <label class="form-label">Your Surname</label>
+                                            <label class="form-label">Your Middle Name</label>
                                         </div>
                                     </div>
 
@@ -38,14 +38,14 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="text" class="form-control" />
-                                            <label class="form-label">Your Username</label>
+                                            <label class="form-label">Your Last Name</label>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="date" class="form-control" />
+                                            <input type="date" class="form-control"/>
                                             <label class="form-label">Your Birth Date</label>
                                         </div>
                                     </div>
