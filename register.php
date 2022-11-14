@@ -45,7 +45,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="date" class="form-control" value=""/>
+                                            <input type="date" class="form-control"/>
                                             <label class="form-label">Your Birth Date</label>
                                         </div>
                                     </div>
