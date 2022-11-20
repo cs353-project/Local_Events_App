@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <?php
@@ -20,22 +21,31 @@
                             <h4 class="mt-1 mb-5 pb-1">Event Emitter</h4>
                             </div>
 
-                            <form>
+                            <?php
+                                    if (isset($_SESSION["log-error"]) && $_SESSION["log-error"] == true)
+                                    {
+                                        //echo '<h5 style="color: red">Entered Passwords does not match!</h5>';
+                                        echo '<script>alert("Wrong mail or password!")</script>';
+
+                                        unset($_SESSION["log-error"]);
+                                    }
+                                ?>
+
+                            <form method="post" action="form_process/login_process.php">
                                 <p>Please login to your account</p>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" class="form-control"/>
-                                    <label class="form-label">ID</label>
+                                    <input type="email" name="mail" class="form-control"/>
+                                    <label class="form-label">E-Mail</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" class="form-control" />
+                                    <input type="password" name="password" class="form-control" />
                                     <label class="form-label">Password</label>
                                 </div>
 
-                                <div class="text-center pt-1 mb-5 pb-1">
-                                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
-                                    in</button>
+                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <input type="submit" name="log-submit" value="Login" class="btn btn-primary btn-lg">
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-center pb-4">
