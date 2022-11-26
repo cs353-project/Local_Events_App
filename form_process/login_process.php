@@ -24,7 +24,7 @@
                 {
                     //echo '<script>alert("Successfully Logined!")</script>';
                     $_SESSION["id"] = $row["id"];
-                    echo $_SESSION["id"];
+                    header("Location: ../home_page.php");
                 }
                 else
                 {
