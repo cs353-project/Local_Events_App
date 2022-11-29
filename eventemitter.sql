@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 03:30 PM
+-- Generation Time: Nov 29, 2022 at 04:06 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `eventemitter`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `event_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `description` varchar(2000) DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
+  `registration_endtime` datetime NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `current_capacity` int(11) NOT NULL DEFAULT 0,
+  `status` varchar(255) NOT NULL,
+  `rating` float(2,1) NOT NULL DEFAULT 0.0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location`
+--
+
+CREATE TABLE `location` (
+  `location_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `address_city` varchar(255) NOT NULL,
+  `address_street` varchar(255) NOT NULL,
+  `address_building` varchar(255) NOT NULL,
+  `online_address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -54,6 +90,21 @@ INSERT INTO `user` (`id`, `type`, `first_name`, `middle_name`, `last_name`, `dat
 --
 
 --
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`event_id`),
+  ADD KEY `creator_id` (`creator_id`),
+  ADD KEY `location_id` (`location_id`);
+
+--
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`location_id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -64,10 +115,39 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `event`
+--
+ALTER TABLE `event`
+  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
+
+--
+-- Constraints for table `location`
+--
+ALTER TABLE `location`
+  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
