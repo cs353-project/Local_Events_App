@@ -6,7 +6,10 @@
         
         <!-- Header -->
         <div style="display:flex; justify-content:space-between; padding:10px">
-            <div class="">Logo</div>
+            <div class="text-center">
+                <img src="images/EE_logo.png"
+                    style="width: 70px;" alt="logo">
+            </div>
 
             <div style="list-style-type:none;display:flex; justify-content:flex-end; ">
                 
