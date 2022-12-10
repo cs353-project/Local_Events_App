@@ -39,7 +39,7 @@
          <!-- All Events, List -->
         <div style="padding:10px; margin-left:20px; margin-right:20px">
             <div style="display:flex">
-                <h2 style="padding-right:10px">Popular Events<h2>
+                <h2 style="padding-right:10px">All Events<h2>
                 <a type="button" class="btn btn-outline-danger" href="search_event.php">See More</a>
             </div>
 
