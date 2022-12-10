@@ -56,7 +56,7 @@
                             <img src="musical-note.png" alt="Event Image" width="180" height="100">
                             <p style="font-size: 14px; margin-left:10px">' . $row["type"] . '</p>
                             <p style="font-size: 14px; margin-left:10px">' . $row["start_time"] . '</p>
-                            <a type="button" class="btn btn-outline-danger" href="create_event.php" style="margin-left:10px">Details</a>
+                            <a type="button" class="btn btn-outline-danger" href="details.php?id=' . $row["event_id"] . '" style="margin-left:10px">Details</a>
                         </div>';
                 }
             ?>    
