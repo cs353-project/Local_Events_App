@@ -14,23 +14,32 @@
                 <div style="width=100px; height=100px; background-color:white; margin-top:10px">
                     <h2 style="padding:10px">Pick Categories</h2>
                     <div style="padding:10px">
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px; margin-right:10px">Search</a>
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px">ss</a>
+                    
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                     </div>
 
                     <div style="padding:10px">
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px; margin-right:10px">Search</a>
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px">ss</a>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                     </div>
 
                     <div style="padding:10px">
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px; margin-right:10px">Search</a>
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px">ss</a>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                     </div>
 
                     <div style="padding:10px">
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px; margin-right:10px">Search</a>
-                        <a type="button" class="btn btn-outline-danger" href="search_event.php" style="width:100px">ss</a>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                     </div>
 
                 </div>
