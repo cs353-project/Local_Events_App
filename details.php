@@ -62,30 +62,34 @@
             </div>
         </div>
         
-        <div class="col-4">
-            <img src="musical-note.png" alt="Event Image" width="200" height="200">
-            <p>this is the string from post</p>
-            <p>here is going to be rating from post</p>
-        </div>
-        
-        <div class="col-4">
-            <img src="musical-note.png" alt="Event Image" width="200" height="200">
-            <p>this is the string from post</p>
-            <p>here is going to be rating from post</p>
-        </div>  
-        <div class="col-4">
-            <img src="musical-note.png" alt="Event Image" width="200" height="200">
-            <p>this is the string from post</p>
-            <p>here is going to be rating from post</p>
-        </div>  
+        <?php
+            $query = "SELECT * FROM event-post JOIN post ON event-post.post_id = post.post_id
+                    WHERE event_id = $eventID";
 
-        
+            $result = mysqli_query($connection, $query);
+            
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                echo '<div class="col-4">
+                        <img src="musical-note.png" alt="Event Image" width="200" height="200">
+                        <p>' . $row["text"] . '</p>';
+
+                $postID = $row["post_id"];
+                
+                $count_like_query = "SELECT COUNT(user_id) AS count_like FROM like " . 
+                                    "WHERE post_id = $postID " . 
+                                    "GROUP BY user_id";
+                
+                $like_result = mysqli_query($connection, $count_like_query);
+                $count = 0;
+
+                while ($like_row = mysqli_fetch_assoc($like_result))
+                {
+                    $count = $row["count_like"];
+                }
+
+                echo '<p>' . $count .' likes</p></div>';
+            }
+        ?>  
     </div>
-    
-
-    
-
-    
-    
-
 </body>
