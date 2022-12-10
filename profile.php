@@ -45,11 +45,26 @@
                 </div>
                 <div class="col-6">
                     <div style="width:600px; background-color: white;">
-                        <h1>My Wallet<h2>
+                        <h1>My Wallets<h2>
+                        <a href="" class="btn btn-primary">Create Wallet</a>
+                        
+                        <?php
+                            $query = "SELECT * FROM wallet WHERE user_id = $userID";
+                            $result = mysqli_query($connection, $query);
 
-                            <div>
-                                <p>account balance</p>
-                            </div>
+                            if (mysqli_num_rows($result) <= 0)
+                            {
+                                echo '<p style="color: red">No wallet available!</p>';
+                            }
+                            else
+                            {
+                                while ($row = mysqli_fetch_assoc($result))
+                                {
+                                    echo '<p2>Wallet ID: ' . $row["wallet_id"] . '</p2>';
+                                    echo '<p1>Balance: ' . $row["balance"] . '</p1>';
+                                }
+                            }
+                        ?>
                     </div>
 
                 </div>
@@ -62,18 +77,24 @@
 
                 <div style="display:flex;">
                     <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Name of the Event</h4>
-                        <h4>Time of the Event</h4>
-                        <h4>Location of the Event</h4>
-                        <a type="button" class="btn btn-outline-danger" href="details.php?id=123"
-                                    style="margin:10px">Details</a>
-                    </div>
-                    <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Name of the Event</h4>
-                        <h4>Time of the Event</h4>
-                        <h4>Location of the Event</h4>
-                        <a type="button" class="btn btn-outline-danger" href="details.php?id=123"
-                                    style="margin:10px">Details</a>
+                        <?php
+                            $query = "SELECT * FROM attend a " . 
+                                    "JOIN user u ON a.user_id = u.id " . 
+                                    "JOIN event e ON a.event_id = e.event_id " .
+                                    "JOIN location l ON e.location_id = l.location_id " . 
+                                    "WHERE u.id = $userID " . 
+                                    "AND e.status = 'active'";
+                            
+                            $result = mysqli_query($connection, $query);
+
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
+                                echo '<h4>' . $row["title"] . '</h4>';
+                                echo '<h4>' . $row["start_time"] . '</h4>';
+                                echo '<h4>' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
+                                echo '<a type="button" class="btn btn-outline-danger" href="details.php?id=' . $row["e.event_id"] . ' style="margin:10px">Details</a>';
+                            }
+                        ?>
                     </div>
                 </div>
 
@@ -85,25 +106,25 @@
 
                 <div style="display:flex;">
                     <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Name of the Event</h4>
-                        <h4>Time of the Event</h4>
-                        <h4>Location of the Event</h4>
-                        <a type="button" class="btn btn-outline-danger" href="edit_event.php?id=event_id"
-                                    style="margin:10px">Edit</a>
-                    </div>
-                    <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Name of the Event</h4>
-                        <h4>Time of the Event</h4>
-                        <h4>Location of the Event</h4>
-                        <a type="button" class="btn btn-outline-danger" href="edit_event.php?id=event_id"
-                                    style="margin:10px">Edit</a>
-                    </div>
-                </div>
-
+                    <?php
+                        $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id " . 
+                                "WHERE event.creator_id = $userID";
                 
+                        $result = mysqli_query($connection, $query);
+
+                        while ($row = mysqli_fetch_assoc($result))
+                        {
+                            echo '<h4>' . $row["title"] . '</h4>';
+                            echo '<h4>' . $row["start_time"] . '</h4>';
+                            echo '<h4>' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
+                            echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . ' style="margin:10px">Edit</a>';
+                        }
+                    ?>
+                    </div> 
+                </div>
             </div>
 
-            <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
+            <!-- <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
             <div class="row">
                 <h2>My Posts</h2>
 
@@ -126,6 +147,7 @@
 
                 
             </div>
+            </div> -->
 
     </body>
 
