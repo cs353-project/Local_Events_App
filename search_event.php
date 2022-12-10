@@ -129,7 +129,7 @@
                 </div>
                 <div style="display:flex; padding:10px; justify-content:space-between;">
                     <div style="height:300px; width:300px; background-color: #555">
-                        <img src="musical-note.png" alt="Event Image" width="300" height="200">
+                        <img src="musical-note.jpg" alt="Event Image" width="300" height="200">
                         <p style="font-size: 14px;margin-left:10px">Classical Music</p>
                         <p style="font-size: 14px;margin-left:10px">Date</p>
                         <p style="font-size: 14px;margin-left:10px">Location</p>
