@@ -24,7 +24,7 @@
                     echo '<h2>' . $row["title"] . '</h2>';
                     echo '<h3>' . $row["start_time"] . '</h3>';
                     echo '<h3>' . $row["address_city"] . '</h3>';
-                    echo '<h3>' . $row["address_streer"] . '</h3>';
+                    echo '<h3>' . $row["address_street"] . '</h3>';
                     echo '<h3>' . $row["address_building"] . '</h3>';
                     echo '<h3>' . $row["type"] . '</h3>';
                     echo '<h3>' . $row["description"] . '</h3>';
@@ -47,7 +47,7 @@
             ?>
             
             <a type="button" class="btn btn-outline-danger" href="search_event.php">Add to my calendar</a>
-               
+
         </div>
     </div>
     <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
