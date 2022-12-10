@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php include("api/connection.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -7,7 +8,7 @@
 
     <body>
         <?php include_once("navbar.php"); ?>
-
+        <?php $userID = $_SESSION["id"]; ?>
 
         <div style="margin:10px">
             <div class="row">
@@ -20,13 +21,20 @@
                                         <img style="margin:40px" src="musical-note.png" alt="Event Image" width="100" height="100">
                                     </div>
 
-                                    <div class="col-8 ">
-                                        <h4>Username: ....<h4>
-                                                <h4>Username: ....<h4>
-                                                        <h4>Username: ....<h4>
-                                                                <h4>Username: ....<h4>
-                                                                        <h4>Username: ....<h4>
-                                    </div>
+                                    <?php
+                                        $query = "SELECT * FROM user WHERE id = $userID";
+                                        $result = mysqli_query($connection, $query);
+
+                                        while ($row = mysqli_fetch_assoc($result))
+                                        {
+                                            echo '<div class="col-8 ">
+                                                    <h4>Name: ' . $row["first_name"] . ' ' . $row["middle_name"] . '<h4>
+                                                    <h4>Last Name: ' . $row["last_name"] . '<h4>
+                                                    <h4>Age: ' . $row["age"] . '<h4>
+                                                    <h4>Mail: ' . $row["mail"] . '<h4>
+                                                </div>';
+                                        }
+                                    ?>
 
                                 </div>
 
@@ -34,16 +42,14 @@
                                     style="margin:10px">Edit</a>
                     </div>
 
-
-
                 </div>
                 <div class="col-6">
                     <div style="width:600px; background-color: white;">
                         <h1>My Wallet<h2>
 
-                                <div>
-                                    <p>account balance</p>
-                                </div>
+                            <div>
+                                <p>account balance</p>
+                            </div>
                     </div>
 
                 </div>
