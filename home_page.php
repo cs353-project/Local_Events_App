@@ -38,7 +38,7 @@
                     <img src="musical-note.png" alt="Event Image" width="180" height="100">
                     <p style="font-size: 14px; margin-left:10px">Classical Music</p>
                     <p style="font-size: 14px; margin-left:10px">Date</p>
-                    <a type="button" class="btn btn-outline-danger" href="create_event.php" style="margin-left:10px">Details</a>
+                    <a type="button" class="btn btn-outline-danger" href="details.php?id=<?php echo "insertDetailId"; ?>" style="margin-left:10px">Details</a>
                 </div>
 
                 
