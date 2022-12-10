@@ -24,7 +24,7 @@
                         echo '<div style="justify-content:space-between; display:flex; padding:10px">
                                 <div style="height:300px; width:300px; background-color: #555">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
-                                    <p style="font-size: 14px;margin-left:10px">' . $row["type"] . '</p>
+                                    <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
                                 </div>
@@ -54,7 +54,7 @@
                 {
                     echo '<div style="height:240px; width:180px; background-color: #555">
                             <img src="musical-note.png" alt="Event Image" width="180" height="100">
-                            <p style="font-size: 14px; margin-left:10px">' . $row["type"] . '</p>
+                            <p style="font-size: 14px; margin-left:10px">' . $row["title"] . '</p>
                             <p style="font-size: 14px; margin-left:10px">' . $row["start_time"] . '</p>
                             <a type="button" class="btn btn-outline-danger" href="create_event.php" style="margin-left:10px">Details</a>
                         </div>';
