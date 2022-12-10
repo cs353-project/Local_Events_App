@@ -42,7 +42,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="text" name="first_name" class="form-control" placeholder=<?php echo $first_name ?> required/>
+                                            <input type="text" name="first_name" class="form-control" value=<?php echo $first_name ?> required/>
                                             <label class="form-label">Your First Name</label>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="text" name="middle_name" class="form-control" placeholder=<?php echo $middle_name ?>/>
+                                            <input type="text" name="middle_name" class="form-control" value=<?php echo $middle_name ?>/>
                                             <label class="form-label">Your Middle Name</label>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="text" name="last_name" class="form-control" placeholder=<?php echo $last_name ?> required/>
+                                            <input type="text" name="last_name" class="form-control" value=<?php echo $last_name ?> required/>
                                             <label class="form-label">Your Last Name</label>
                                         </div>
                                     </div>
@@ -83,13 +83,13 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <input type="email" name="mail" class="form-control" placeholder=<?php echo $mail ?> required/>
+                                        <input type="email" name="mail" class="form-control" value=<?php echo $mail ?> required/>
                                         <label class="form-label">Your Email</label>
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <input type="submit" name="reg-submit" value="Edit" class="btn btn-primary btn-lg">
+                                        <input type="submit" name="edit-profile-submit" value="Edit" class="btn btn-primary btn-lg">
                                     </div>
 
                                 </form>
