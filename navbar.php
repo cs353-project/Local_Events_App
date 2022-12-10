@@ -13,6 +13,7 @@
             <a type="button" class="btn btn-outline-danger mx-1" href="create_event.php">Create</a>
             <a type="button" class="btn btn-outline-danger mx-1" href="search_event.php">Search</a>
             <a type="button" class="btn btn-outline-danger mx-1" href="profile.php">Profile</a>
+            <a type="button" class="btn btn-outline-danger mx-1" href="index.php">Logout</a>
         </div>
     </div>
 </nav>

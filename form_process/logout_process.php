@@ -5,6 +5,6 @@ session_unset();
 session_destroy();
 mysqli_close($connection);
 
-header("Location: ../create_event.php");
+header("Location: ../index.php");
 
 ?>
