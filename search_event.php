@@ -5,25 +5,9 @@
     <body style="background-color:#EEE2E2">
         
         <!-- Header -->
-        <div style="display:flex; justify-content:space-between; padding:10px">
-            <div class="">Logo</div>
+        <?php include_once("navbar.php"); ?>
 
-            <div style="list-style-type:none;display:flex; justify-content:flex-end; ">
-                
-                <div style="padding-right:20px">
-                    <a type="button" class="btn btn-outline-danger" href="create_event.php">Create</a>
-                </div>
-                <div style="padding-right:20px">
-                    <a type="button" class="btn btn-outline-danger" href="search_event.php">Search</a>
-                </div>
-                <div style="padding-right:10px">
-                    <a type="button" class="btn btn-outline-danger" href="profile.php">Profile</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
+        
         
         <div class="row" style="margin:10px">
             <div class="col-4" style="padding-top:10px;">
