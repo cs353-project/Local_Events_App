@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 05:10 PM
+-- Generation Time: Dec 11, 2022 at 09:47 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -69,7 +69,7 @@ CREATE TABLE `event` (
   `title` varchar(255) NOT NULL,
   `creator_id` int(11) NOT NULL,
   `description` varchar(2000) DEFAULT NULL,
-  `type` varchar(255) NOT NULL,
+  `type` enum('festival','competition','music','sports','workshop','art','staged','informational') NOT NULL,
   `registration_endtime` datetime NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
@@ -77,6 +77,17 @@ CREATE TABLE `event` (
   `status` varchar(255) NOT NULL,
   `rating` float(2,1) NOT NULL DEFAULT 0.0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`event_id`, `location_id`, `title`, `creator_id`, `description`, `type`, `registration_endtime`, `start_time`, `end_time`, `current_capacity`, `status`, `rating`) VALUES
+(1, 1, 'Futsal Turnuvası', 2, 'mükemmel', 'competition', '2022-12-11 22:15:20', '2022-12-12 22:15:20', '2022-12-13 22:15:20', 25, 'status', 0.0),
+(2, 1, 'Karaoke', 6, 'baya iyi', 'music', '2022-12-12 22:16:16', '2022-12-13 22:16:16', '2022-12-14 22:16:16', 50, 'status', 0.0),
+(3, 1, 'ted talk', 6, 'inanılmaz', 'informational', '2022-12-15 22:20:40', '2022-12-17 11:20:40', '2022-12-17 22:20:40', 88, 'status', 0.0),
+(4, 2, 'Sefo Konseri', 6, 'Baya iyi Olacak', 'festival', '2022-12-12 09:29:36', '2022-12-15 09:29:36', '2022-12-17 09:29:36', 2500, 'current', 0.0),
+(5, 3, 'Felsefe Şenliği', 6, 'Muazzam', 'festival', '2022-12-12 09:42:36', '2022-12-15 09:42:36', '2022-12-18 09:42:36', 235, 'Active', 0.0);
 
 -- --------------------------------------------------------
 
@@ -138,6 +149,15 @@ CREATE TABLE `location` (
   `online_address` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`location_id`, `address_city`, `address_street`, `address_building`, `online_address`) VALUES
+(1, 'Ankara', 'Çankaya', 'Bilkent', '78'),
+(2, 'Antalya', 'Muratpaşa', 'Konyaaltı Plajı', 'Erkanlar Beach'),
+(3, 'Ankara', 'Polatlı', 'Merkez', 'Kent+');
+
 -- --------------------------------------------------------
 
 --
@@ -186,6 +206,14 @@ CREATE TABLE `share` (
   `user_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `share`
+--
+
+INSERT INTO `share` (`user_id`, `location_id`) VALUES
+(2, 1),
+(6, 2);
 
 -- --------------------------------------------------------
 
@@ -367,7 +395,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `event-pass`
@@ -385,7 +413,7 @@ ALTER TABLE `event-post`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
