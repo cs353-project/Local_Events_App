@@ -44,9 +44,11 @@
                 if ($pass == 'T')
                 {
                     echo '<a type="button" class="btn btn-outline-danger" href="search_event.php">Purchase Ticket</a>';
+                    echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Send Ticket</a>';
                 }
                 else{
                     echo '<a type="button" class="btn btn-outline-danger" href="join_event.php">Join</a>';
+                    echo '<a type="button" class="btn btn-outline-danger" href="send_invitation.php">Send Invitation</a>';
                 }
             ?>
             
