@@ -47,7 +47,7 @@
 
             if (!$result)
             {
-                mysqli_error();
+                mysqli_error($connection);
             }
 
             unset($_SESSION["reg-error"]);
