@@ -57,7 +57,7 @@
                 <h1>Posts</h1>
             </div>
             <div class="mx-5 mt-2">
-                <a type="button" class="btn btn-outline-danger" href="search_event.php">Create Post</a>   
+                <a type="button" class="btn btn-outline-danger" href="create_post.php?id=<?php echo $eventID?>">Create Post</a>   
             </div>
         </div>
         
