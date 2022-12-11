@@ -211,9 +211,8 @@
                     {
                         if($tmp % 3 == 0)
                         {
-                            echo "1";
-                            echo '<div style="display:flex; padding:10px; justify-content:space-between;">
-                                    <div style="height:300px; width:300px; background-color: #555">
+                            echo '<div style="display:flex; padding:10px;">
+                                    <div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
@@ -221,8 +220,7 @@
                                 </div>';
                         } else if ($tmp % 3 == 1)
                         {
-                            echo "2";
-                            echo '<div style="height:300px; width:300px; background-color: #555">
+                            echo '<div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
@@ -230,8 +228,7 @@
                                   </div>';
                         } else if ($tmp % 3 == 2)
                         {
-                            echo "3";
-                            echo '<div style="height:300px; width:300px; background-color: #555">
+                            echo '<div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
