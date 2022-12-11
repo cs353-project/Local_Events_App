@@ -46,7 +46,7 @@
                 <div class="col-6">
                     <div style="width:600px; background-color: white;">
                         <h1>My Wallets<h2>
-                        <a href="" class="btn btn-primary">Create Wallet</a>
+                        <a href="./form_process/create_wallet_process.php" class="btn btn-primary" >Create Wallet</a>
                         
                         <?php
                             $query = "SELECT * FROM wallet WHERE user_id = $userID";
@@ -59,9 +59,14 @@
                             else
                             {
                                 while ($row = mysqli_fetch_assoc($result))
-                                {
-                                    echo '<p2>Wallet ID: ' . $row["wallet_id"] . '</p2>';
-                                    echo '<p1>Balance: ' . $row["balance"] . '</p1>';
+                                {   
+
+                                    echo '<h4>' . $row["wallet_id"] . '</h4>';
+                                    echo '<h4>' . $row["balance"] . '</h4>';
+                                    
+                                    echo '<a type="button" class="btn btn-outline-danger" href="add_balance.php?walletID= '. $row["wallet_id"] . ' " style="margin:10px">Edit</a>';
+                                    
+                                    
                                 }
                             }
                         ?>
