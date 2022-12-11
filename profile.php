@@ -83,17 +83,19 @@
                 <div style="display:flex;">
                     <div style="margin:10px; width:300px; background-color:white">
                         <?php
-                            $query = "SELECT * FROM attend a " . 
-                                    "JOIN user u ON a.user_id = u.id " . 
-                                    "JOIN event e ON a.event_id = e.event_id " .
-                                    "JOIN location l ON e.location_id = l.location_id " . 
-                                    "WHERE u.id = $userID " . 
-                                    "AND e.status = 'active'";
+                            $query = "SELECT * FROM attend a  
+                                    JOIN user u ON a.user_id = u.id  
+                                    JOIN event e ON a.event_id = e.event_id
+                                    JOIN location l ON e.location_id = l.location_id
+                                    WHERE u.id = $userID
+                                    ";
+    
+                                    
                             
                             $result = mysqli_query($connection, $query);
-
+                            
                             while ($row = mysqli_fetch_assoc($result))
-                            {
+                            {   
                                 echo '<h4>' . $row["title"] . '</h4>';
                                 echo '<h4>' . $row["start_time"] . '</h4>';
                                 echo '<h4>' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
