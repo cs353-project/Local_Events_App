@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <body style="background-color:#EEE2E2">
 <?php include_once("navbar.php"); ?>
@@ -62,33 +63,39 @@
         </div>
         
         <?php
-            $query = "SELECT * FROM event-post JOIN post ON event-post.post_id = post.post_id
-                    WHERE event_id = $eventID";
+            $query = "SELECT * FROM `event-post` JOIN post ON `event-post`.post_id = post.post_id WHERE event_id = $eventID";
 
             $result = mysqli_query($connection, $query);
-            
-            while ($row = mysqli_fetch_assoc($result))
+
+            if (mysqli_num_rows($result) > 0)
             {
-                echo '<div class="col-4">
-                        <img src="musical-note.png" alt="Event Image" width="200" height="200">
-                        <p>' . $row["text"] . '</p>';
-
-                $postID = $row["post_id"];
-                
-                $count_like_query = "SELECT COUNT(user_id) AS count_like FROM like " . 
-                                    "WHERE post_id = $postID " . 
-                                    "GROUP BY user_id";
-                
-                $like_result = mysqli_query($connection, $count_like_query);
-                $count = 0;
-
-                while ($like_row = mysqli_fetch_assoc($like_result))
+                while ($row = mysqli_fetch_assoc($result))
                 {
-                    $count = $row["count_like"];
-                }
+                    echo '<div class="col-4">
+                            <img src="musical-note.png" alt="Event Image" width="200" height="200">
+                            <p>' . $row["text"] . '</p>';
 
-                echo '<p>' . $count .' likes</p></div>';
+                    $postID = $row["post_id"];
+                    
+                    $count_like_query = "SELECT COUNT(*) AS count_like FROM `like` WHERE post_id = $postID";
+                    
+                    $like_result = mysqli_query($connection, $count_like_query);
+                    $count = 0;
+                    
+                    if (mysqli_num_rows($result) > 0)
+                    {
+                        while ($like_row = mysqli_fetch_assoc($like_result))
+                        {
+                            $count = $like_row["count_like"];
+                        }
+                    }
+                    
+
+                    echo '<p>' . $count .' likes</p></div>';
+                }
             }
+            
+            
         ?>  
     </div>
 </body>
