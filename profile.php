@@ -64,7 +64,7 @@
                                     echo '<h4>' . $row["wallet_id"] . '</h4>';
                                     echo '<h4>' . $row["balance"] . '</h4>';
                                     
-                                    echo '<a type="button" class="btn btn-outline-danger" href="add_balance.php?walletID= '. $row["wallet_id"] . ' " style="margin:10px">Edit</a>';
+                                    echo '<a type="button" class="btn btn-outline-danger" href="add_balance.php?id=' . $row["wallet_id"] . '" style="margin:10px">Edit</a>';
                                     
                                     
                                 }
@@ -122,7 +122,7 @@
                             echo '<h4>' . $row["title"] . '</h4>';
                             echo '<h4>' . $row["start_time"] . '</h4>';
                             echo '<h4>' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
-                            echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . ' style="margin:10px">Edit</a>';
+                            echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . '" style="margin:10px">Edit</a>';
                         }
                     ?>
                     </div> 
