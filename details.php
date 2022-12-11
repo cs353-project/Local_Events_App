@@ -41,9 +41,12 @@
                     $pass = $row["pass_requirement"];
                 }
 
-                if ($pass = 'T')
+                if ($pass == 'T')
                 {
                     echo '<a type="button" class="btn btn-outline-danger" href="search_event.php">Purchase Ticket</a>';
+                }
+                else{
+                    echo '<a type="button" class="btn btn-outline-danger" href="join_event.php">Join</a>';
                 }
             ?>
             
