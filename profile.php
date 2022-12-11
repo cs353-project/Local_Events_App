@@ -92,7 +92,7 @@
                                 echo '<h4>' . $row["title"] . '</h4>';
                                 echo '<h4>' . $row["start_time"] . '</h4>';
                                 echo '<h4>' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
-                                echo '<a type="button" class="btn btn-outline-danger" href="details.php?id=' . $row["e.event_id"] . ' style="margin:10px">Details</a>';
+                                echo '<a type="button" class="btn btn-outline-danger" href="details.php?id=' . $row["event_id"] . '" style="margin:10px">Details</a>';
                             }
                         ?>
                     </div>
