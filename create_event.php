@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <body style="background-color:#EEE2E2">
     <?php include_once("navbar.php"); ?>
-    
+
      
 
         <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <input type="submit" name="create-event" value="Create Event" class="btn btn-primary btn-lg">
+                                        <input type="submit" name="create-event" value="Create Event" class="btn btn-primary btn-lg" href="home_page.php">
                                     </div>
 
                                 </form>

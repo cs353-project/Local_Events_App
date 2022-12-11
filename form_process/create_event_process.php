@@ -70,12 +70,7 @@
         {
             mysqli_error();
         }   
-        $query3 = "INSERT INTO restriction ( event_id, capacity, age, gender, pass_requirement) " . 
-        "VALUES ( '1', '$capacity', '$age', '$gender', '$pass_requirement')";
-        $result3 = mysqli_query($connection, $query3);
-        if (!$result3)
-        {
-            mysqli_error();
-        }
+        header("Location: ../home_page.php");
+
     }
 ?>
