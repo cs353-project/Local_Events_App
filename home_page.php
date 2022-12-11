@@ -23,7 +23,7 @@
                     {
                     echo '
                             <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
-                                <div style="height:300px; width:300px; background-color: #555">
+                                <div style="height:300px; width:300px; background-color: #555; margin-right:10px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
@@ -60,7 +60,7 @@
                 {
                     echo '
                     <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
-                        <div style="height:240px; width:180px; background-color: #555">
+                        <div style="height:240px; width:180px; background-color: #555; margin-right:10px">
                             <img src="musical-note.png" alt="Event Image" width="180" height="100">
                             <p style="font-size: 14px; margin-left:10px">' . $row["title"] . '</p>
                             <p style="font-size: 14px; margin-left:10px">' . $row["start_time"] . '</p>

@@ -7,9 +7,13 @@
         
         <!-- Header -->
         <?php include_once("navbar.php"); ?>
+        <?php 
+            $query2 = "SELECT * FROM event JOIN location ON event.location_id = location.location_id ";
+        ?>
+        
         
         <div class="row" style="margin:10px">
-            <form class="col-4" style="padding-top:10px;" method="post" action="search_event.php" >
+            <form class="col-4" style="padding-top:10px;" method="get" action="search_event.php" >
                 <div style="width=100px; height=100px; background-color:white; margin-top:10px">
                 <h2 style="padding:10px">Pick Categories</h2>
                     <div style="padding:10px">
@@ -79,23 +83,22 @@
                 <h2>Events</h2>
 
                 <?php
-                if(isset($_POST["search_event_submit"]))
-                {
-                    @$competition = $_POST["competition"];
-                    @$festival = $_POST["festival"];
-                    @$music = $_POST["music"];
-                    @$sports = $_POST["sports"];
-                    @$workshop = $_POST["workshop"];
-                    @$art = $_POST["art"];
-                    @$staged = $_POST["staged"];
-                    @$informational = $_POST["informational"];
-                    @$min_price = $_POST["min_price"];
-                    @$max_price = $_POST["max_price"];
-                    @$location = $_POST["location"];
+                    @$competition = $_GET["competition"];
+                    @$festival = $_GET["festival"];
+                    @$music = $_GET["music"];
+                    @$sports = $_GET["sports"];
+                    @$workshop = $_GET["workshop"];
+                    @$art = $_GET["art"];
+                    @$staged = $_GET["staged"];
+                    @$informational = $_GET["informational"];
+                    @$min_price = $_GET["min_price"];
+                    @$max_price = $_GET["max_price"];
+                    @$location = $_GET["location"];
 
                     $count = 0;
+                    
+                    $result = mysqli_query($connection, $query2);
                     $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id ";
-
                     if($competition == "on"){
                         if($count == 0){
                             $count = 1;
@@ -212,34 +215,36 @@
                         if($tmp % 3 == 0)
                         {
                             echo '<div style="display:flex; padding:10px;">
+                            <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                                     <div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
-                                </div>';
+                                </div> </a>';
                         } else if ($tmp % 3 == 1)
                         {
-                            echo '<div style="height:300px; width:300px; background-color: #555; margin-right:20px">
+                            echo '<a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
+                                    <div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
-                                  </div>';
+                                  </div> </a>';
                         } else if ($tmp % 3 == 2)
                         {
-                            echo '<div style="height:300px; width:300px; background-color: #555; margin-right:20px">
+                            echo '<a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
+                                    <div style="height:300px; width:300px; background-color: #555; margin-right:20px">
                                     <img src="musical-note.png" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 14px;margin-left:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 14px;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
-                                </div>
+                                </div> </a>
                                 </div>';
                         }
 
                         $tmp = $tmp + 1;
                     }
-                }
                 ?>  
 
             </div>
