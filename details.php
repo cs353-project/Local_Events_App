@@ -45,16 +45,16 @@
             }
 
             if ($pass == 'T') {
-                echo '<a type="button" class="btn btn-outline-danger" href="./form_process/purchase_ticket_process.php?id=' . $eventID . '">Purchase Ticket</a>';
+                echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/purchase_ticket_process.php?id=' . $eventID . '">Purchase Ticket</a>';
                 echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Send Ticket</a>';
             } else {
                 $query = "SELECT * FROM attend WHERE event_id = $eventID AND user_id = $userID";
                 $result = mysqli_query($connection, $query);
 
                 if (mysqli_num_rows($result) <= 0) {
-                    echo '<a type="button" class="btn btn-outline-danger" href="./form_process/join_process.php?id=' . $eventID . '">Join</a>';
+                    echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/join_process.php?id=' . $eventID . '">Join</a>';
                 } else {
-                    echo '<a type="button" class="btn btn-outline-danger" href="">Joined</a>';
+                    echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="">Joined</a>';
                 }
 
 
@@ -62,7 +62,7 @@
             }
             ?>
 
-                <a type="button" class="btn btn-outline-danger" href="search_event.php">Add to my calendar</a>
+                
 
             </div>
         </div>
