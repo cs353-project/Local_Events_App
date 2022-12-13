@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <body >
+    <body style="background-color:#EEE2E2">
     <?php include_once("navbar.php"); ?>
-
+    <?php
+        include("api/header.php");
+        insert_head("Create Event");
+    ?>
      
 
         <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
 
-        <div style="margin:10px; padding:10px;background-color:white; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
+        <div style="padding:10px">
             <h2>Create Event</h2>
             <form class="mx-1 mx-md-4" method="post" action="form_process/create_event_process.php">
 
@@ -20,7 +23,21 @@
                                             <label class="form-label">Event Name</label>
                                         </div>
                                     </div>
+                                    <?php
+                                    if (isset($_SESSION["time-error"]) && $_SESSION["time-error"] == true)
+                                    {
+                                        echo '<script>alert("Enter valid times!")</script>';
 
+                                        unset($_SESSION["time-error"]);
+                                    }
+                                    ?>
+                                     <?php
+                                    if (isset($_SESSION["restriction-error"]) && $_SESSION["restriction-error"] == true)
+                                    {
+                                        echo '<script>alert("Enter valid restriction values!")</script>';
+                                        unset($_SESSION["restriction-error"]);
+                                    }
+                                    ?>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
@@ -53,7 +70,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="datetime-local" name="start_time" class="form-control" required/>
-                                            <label class="form-label">Start Date</label>
+                                            <label class="form-label">Start Date(should be sooner than end date)</label>
                                         </div>
                                     </div>
 
@@ -63,7 +80,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="datetime-local" name="end_time" class="form-control" required/>
-                                            <label class="form-label">End Date</label>
+                                            <label class="form-label">End Date(max is 3 years later for eu time)</label>
                                         </div>
                                     </div>
 
@@ -78,7 +95,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="datetime-local" name="registration_endtime" class="form-control" required/>
-                                            <label class="form-label">Registiration End Date</label>
+                                            <label class="form-label">Registiration End Date(sooner than start date later then current date) </label>
                                         </div>
                                     </div>
 
@@ -87,7 +104,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <label class="form-label">Restrictions</label>
+                                        <label class="form-label">Restrictions: Check the tickbox for the following restrictions you want and fill in the amount</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -100,7 +117,7 @@
                                             <input type="checkbox" id="gender_check" name="gender_check[]" value="gender_check">
                                             <label for="gender_check">Gender</label><br>
                                             <input type="checkbox" id="pass_check" name="pass_check[]" value="pass_check">
-                                            <label for="pass_check">Pass</label><br>
+                                            <label for="pass_check">Pass Requirement</label><br>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -114,7 +131,7 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
                                         <input type="number" id="age" name="age" min="3" max="21">
-                                        <label class="form-label">Age Restriction Over</label>
+                                        <label class="form-label">Age Restriction Over(between 3 and 21)</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -132,7 +149,7 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
                                         <input type="number" id="price" name="price" min="1" max="10000">
-                                        <label class="form-label">Age Restriction Over</label>
+                                        <label class="form-label">Ticket Price</label>
                                         </div>
                                     </div>
                                     
