@@ -44,10 +44,10 @@
             $pass_requirement = 'I';
         }
         if(isset($_POST['price'])) {
-            $price = $_POST["price"];
+            $ticket_price = $_POST["price"];
         }
         else{
-            $price = null;
+            $ticket_price = null;
         }
         $mindate = date("Y-m-d");
         $mintime = date("h:i");
@@ -62,7 +62,7 @@
             $_SESSION["time-error"] = true;
             header("Location: ../create_event.php");
         }
-        else if((isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $price <= $zero)){
+        else if((isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $ticket_price <= $zero)){
             $_SESSION["restriction-error"] = true;
             header("Location: ../create_event.php");
         }
@@ -70,7 +70,7 @@
             $_SESSION["time-error"] = false;
             $_SESSION["restriction-error"] = false;
             
-            if( $start_time > $end_time || (isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $price <= $zero) ){              
+            if( $start_time > $end_time || (isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $ticket_price <= $zero) ){              
                 header("Location: ../create_event.php");
             }
             mysqli_real_escape_string($connection, $title);
@@ -94,8 +94,8 @@
             }
 
             $creator_id = $_SESSION["id"];
-            $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, price) " . 
-            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active','$price')";
+            $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, ticket_price) " . 
+            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active','$ticket_price')";
             $result1 = mysqli_query($connection, $query1);
             if (!$result1)
             {
