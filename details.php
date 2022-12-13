@@ -45,6 +45,8 @@
             }
 
             if ($pass == 'T') {
+                    echo '<h4> PUT TICKET PRICE HERE </h4>';
+                echo '<input style="width:100px" type="number" name="min_price" placeholder="amount" class="form-control" />';
                 echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/purchase_ticket_process.php?id=' . $eventID . '">Purchase Ticket</a>';
                 echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Send Ticket</a>';
             } else {
