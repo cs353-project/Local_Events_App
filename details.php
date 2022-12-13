@@ -23,6 +23,8 @@
             $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id
                         WHERE event_id = $eventID";
 
+            $ticket_price = 0;
+
             $result = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -33,9 +35,10 @@
                 echo '<h3>' . $row["address_building"] . '</h3>';
                 echo '<h3>' . $row["type"] . '</h3>';
                 echo '<h3>' . $row["description"] . '</h3>';
+                $ticket_price = $row["ticket_price"];
             }
             ?>
-                <?php
+            <?php
             $pass = "";
             $query = "SELECT * FROM restriction WHERE event_id = $eventID";
             $result = mysqli_query($connection, $query);
@@ -45,10 +48,12 @@
             }
 
             if ($pass == 'T') {
-                    echo '<h4> PUT TICKET PRICE HERE </h4>';
-                echo '<input style="width:100px" type="number" name="min_price" placeholder="amount" class="form-control" />';
-                echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/purchase_ticket_process.php?id=' . $eventID . '">Purchase Ticket</a>';
+                echo '<h4> Ticket Price: ' . $ticket_price . ' </h4>';
+                echo '<form method="post" action="form_process/purchase_ticket_process.php?id=' . $eventID . '">';
+                echo '<input style="width:100px" type="number" name="amount" placeholder="amount" min="0" class="form-control" required>';
+                echo '<input type="submit" name="ticket_submit" style="margin-right:10px" class="btn btn-outline-danger" value="Purchase Ticket">';
                 echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Send Ticket</a>';
+                echo '</form>';
             } else {
                 $query = "SELECT * FROM attend WHERE event_id = $eventID AND user_id = $userID";
                 $result = mysqli_query($connection, $query);
