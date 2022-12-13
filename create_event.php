@@ -9,7 +9,7 @@
 
         <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
 
-        <div style="padding:10px">
+        <div style="margin:10px; padding:10px;background-color:white; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
             <h2>Create Event</h2>
             <form class="mx-1 mx-md-4" method="post" action="form_process/create_event_process.php">
 
