@@ -19,7 +19,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="text" name="name_surname" class="form-control"/>
+                                            <input type="text" name="name_surname" class="form-control" required/>
                                             <label class="form-label">Name Surname</label>
                                         </div>
                                     </div>
@@ -27,7 +27,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="month" name="expiration" class="form-control"/>
+                                            <input type="month" name="expiration" class="form-control" required/>
                                             <label class="form-label">Expiratipon Date</label>
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="number" max="999" min="100" name="cvv" class="form-control"/>
+                                            <input type="number" max="999" min="100" name="cvv" class="form-control" required/>
                                             <label class="form-label">CVV</label>
                                         </div>
                                     </div>
@@ -43,13 +43,13 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
-                                            <input type="number" name="balance" class="form-control"/>
+                                            <input type="number" step="0.01" min="0" name="balance" class="form-control" required/>
                                             <label class="form-label">Balance</label>
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <input type="submit" name="balance_submit" class="btn btn-outline-danger" value="Add Balance">
+                                        <input type="submit" name="balance_submit"  class="btn btn-outline-danger" value="Add Balance">
                                     </div>
 
             </form>
