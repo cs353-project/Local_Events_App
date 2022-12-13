@@ -21,7 +21,7 @@
                 <h2 style="padding:10px;">Search</h2>
                 <div style="padding:10px;">
                     <div class="form-outline mb-0 w-20">
-                        <input type="input" name="min_price" placeholder="Event Title" class="form-control" />
+                        <input type="input" name="keyword" placeholder="Event title" class="form-control" />
                     </div>
                 </div>
 
@@ -102,6 +102,7 @@
             <h2 style="padding:10px">Events</h2>
 
             <?php
+                @$keyword = $_GET["keyword"];
                 @$competition = $_GET["competition"];
                 @$festival = $_GET["festival"];
                 @$music = $_GET["music"];
@@ -188,21 +189,34 @@
                     }
                 }
 
-                if ($min_price != NULL) {
+                if ($keyword != NULL) {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE event_id IN (SELECT event_id FROM attend WHERE pass_id IN (SELECT id FROM ticket WHERE price >= $min_price))";
+                        $query = $query . "WHERE title LIKE '%$keyword%'";
                     } else {
-                        $query = $query . "AND event_id IN (SELECT event_id FROM attend WHERE pass_id IN (SELECT id FROM ticket WHERE price >= $min_price))";
+                        $query = $query . "AND title LIKE '%$keyword%'";
                     }
                 }
 
-                if ($max_price != NULL) {
+                if ($min_price != NULL && $max_price != NULL && $min_price > $max_price){
+                    echo '<script>alert("min price should be smaller than max price")</script>';
+                }
+
+                if ($min_price != NULL && $min_price <= $max_price) {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE event_id IN (SELECT event_id FROM attend WHERE pass_id IN (SELECT id FROM ticket WHERE price <= $max_price))";
+                        $query = $query . "WHERE ticket_price  >= $min_price";
                     } else {
-                        $query = $query . "AND event_id IN (SELECT event_id FROM attend WHERE pass_id IN (SELECT id FROM ticket WHERE price <= $max_price))";
+                        $query = $query . "AND ticket_price  >= $min_price";
+                    }
+                }
+
+                if ($max_price != NULL && $min_price <= $max_price) {
+                    if ($count == 0) {
+                        $count = 1;
+                        $query = $query . "WHERE ticket_price  <= $max_price";
+                    } else {
+                        $query = $query . "AND ticket_price  <= $max_price";
                     }
                 }
 
