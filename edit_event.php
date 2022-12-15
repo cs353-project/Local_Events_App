@@ -14,7 +14,12 @@
 
         <div style="padding:10px">
             <h2>Edit Event</h2>
-            <form class="mx-1 mx-md-4" method="post" action="form_process/edit_event_process.php">
+            <form class="mx-1 mx-md-4" method="post" action="form_process/edit_event_process.php?eventID=<?php echo $_GET["id"]?>">
+                <?php
+                                    $eventID = $_GET['id'];
+
+                ?>                                           
+                                    <label class="form-label">Fill the boxes with no-change for features that stay same</label>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -39,13 +44,7 @@
                                         unset($_SESSION["restriction-error"]);
                                     }
                                     ?>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="text" name="address_city" class="form-control"/>
-                                            <label class="form-label">City</label>
-                                        </div>
-                                    </div>
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
@@ -67,23 +66,6 @@
                                         <label class="form-label">Online link</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="datetime-local" name="start_time" class="form-control" required/>
-                                            <label class="form-label">Start Date(should be sooner than end date)</label>
-                                        </div>
-                                    </div>
-
-                                   
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="datetime-local" name="end_time" class="form-control" required/>
-                                            <label class="form-label">End Date(max is 3 years later for eu time)</label>
-                                        </div>
-                                    </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -93,19 +75,28 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="datetime-local" name="registration_endtime" class="form-control" required/>
-                                            <label class="form-label">Registiration End Date(sooner than start date later then current date) </label>
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-0 w-50">
+                                        <label class="form-label">Delay times</label>
                                         </div>
                                     </div>
-
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-0 w-50">
+                                            <input type="checkbox" id="one_hour" name="one_hour[]" value="one_hour">
+                                            <label for="one_hour">One Hour</label><br>
+                                            <input type="checkbox" id="one_day" name="one_day[]" value="one_day">
+                                            <label for="one_day">One Day</label><br>
+                                            <input type="checkbox" id="one_week" name="one_week[]" value="one_week">
+                                            <label for="one_week">One Week</label><br>
+                                        </div>
+                                    </div>
                                 
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <label class="form-label">Restrictions: Check the tickbox for the following restrictions you want and fill in the amount</label>
+                                        <label class="form-label">Restrictions: Check the tickbox for the following restrictions you want to change and fill in the amount</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -159,6 +150,7 @@
                                         <div class="form-outline mb-0 w-50">
                                         <label for="type">Event_type</label>
                                         <select id="type" name="type">
+                                        <option value="no_change">No Change</option>
                                         <option value="festival">Festival</option>
                                         <option value="music">Music</option>
                                         <option value="sports">Sports</option>
@@ -171,7 +163,7 @@
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <input type="submit" name="edit-event" value="Edit Event" class="btn btn-primary btn-lg" >
                                     </div>
-
+                                    
                                 </form>
 
         </div>

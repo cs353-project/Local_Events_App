@@ -5,10 +5,23 @@
     if(isset($_POST["create-event"]))
     {   
         $title = $_POST["title"];
-        $address_city =  $_POST["address_city"];
-        $address_street =  $_POST["address_street"];
-        $address_building =  $_POST["address_building"];
-        $online_address = $_POST["online_address"];
+        if(!isset($_POST['online_check'])){
+            $address_city =  $_POST["address_city"];
+            $address_street =  $_POST["address_street"];
+            $address_building =  $_POST["address_building"];
+        }
+        else{
+            $address_city =  null;
+            $address_street = null;
+            $address_building =  null;
+
+        }
+        if(isset($_POST['online_check']) && isset($_POST['online_address']) ) {
+            $online_address = $_POST["online_address"];
+        }
+        else{
+            $online_address = null;
+        }
         $start_time = $_POST["start_time"];
         $end_time = $_POST["end_time"];
         $description = $_POST["description"];
@@ -38,12 +51,12 @@
             $gender = null;
         }
         if(isset($_POST['pass_requirement'])) {
-            $pass_requirement = 'T';
+            $pass_requirement = "T";
         }
         else{
-            $pass_requirement = 'I';
+            $pass_requirement = "I";
         }
-        if(isset($_POST['price'])) {
+        if(isset($_POST['price']) && isset($_POST['pass_requirement'])) {
             $ticket_price = $_POST["price"];
         }
         else{
@@ -62,17 +75,11 @@
             $_SESSION["time-error"] = true;
             header("Location: ../create_event.php");
         }
-        else if((isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $ticket_price <= $zero)){
-            $_SESSION["restriction-error"] = true;
-            header("Location: ../create_event.php");
-        }
+        
         else{
             $_SESSION["time-error"] = false;
-            $_SESSION["restriction-error"] = false;
             
-            if( $start_time > $end_time || (isset($_POST['capacity']) && $capacity <= $zero) || ( isset($_POST['price']) && $ticket_price <= $zero) ){              
-                header("Location: ../create_event.php");
-            }
+            
             mysqli_real_escape_string($connection, $title);
             mysqli_real_escape_string($connection, $address_city);
             mysqli_real_escape_string($connection, $address_street);

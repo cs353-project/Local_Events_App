@@ -31,13 +31,14 @@
                                         unset($_SESSION["time-error"]);
                                     }
                                     ?>
-                                     <?php
-                                    if (isset($_SESSION["restriction-error"]) && $_SESSION["restriction-error"] == true)
-                                    {
-                                        echo '<script>alert("Enter valid restriction values!")</script>';
-                                        unset($_SESSION["restriction-error"]);
-                                    }
-                                    ?>
+                                     <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-0 w-50">
+                                            <input type="checkbox" id="online_check" name="online_check[]" value="online_check">
+                                            <label for="online_check">Online Event</label><br>
+                                            </div>
+                                    </div>
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
@@ -62,7 +63,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <input type="text" name="online_address" class="form-control" required/>
+                                        <input type="text" name="online_address" class="form-control"/>
                                         <label class="form-label">Online link</label>
                                         </div>
                                     </div>
@@ -116,14 +117,14 @@
                                             <label for="age_check">Age</label><br>
                                             <input type="checkbox" id="gender_check" name="gender_check[]" value="gender_check">
                                             <label for="gender_check">Gender</label><br>
-                                            <input type="checkbox" id="pass_check" name="pass_check[]" value="pass_check">
+                                            <input type="checkbox" id="pass_requirement" name="pass_requirement[]" value="pass_requirement">
                                             <label for="pass_check">Pass Requirement</label><br>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <input type="number" id="capacity" name="capacity" min="0" max="100000">
+                                        <input type="number" id="capacity" name="capacity" min="0" >
                                         <label class="form-label">Capacity Amount</label>
                                         </div>
                                     </div>
@@ -148,7 +149,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-0 w-50">
-                                        <input type="number" id="price" name="price" min="1" max="10000">
+                                        <input type="number" step="0.01" id="price" name="price" min="0,1" >
                                         <label class="form-label">Ticket Price</label>
                                         </div>
                                     </div>
