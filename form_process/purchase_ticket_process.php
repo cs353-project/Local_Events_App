@@ -48,7 +48,7 @@
 
         if( !is_null($res_age) && $user_age < $res_age )
         {
-
+            
         }
         else if( !is_null($res_gender) && $user_gender != $res_gender)
         {
@@ -60,14 +60,18 @@
         }
         else
         {
-
-            $amount = $_POST["amount"];
-
             $query = "SELECT * FROM wallet WHERE user_id = $userID";
             $result = mysqli_query($connection, $query);
 
             $wallet_id = 0;
             $balance = 0;
+
+            if(mysqli_num_rows($result) <= 0){
+                echo "<script>
+                    alert('You have to create a wallet first');
+                    window.location.href='../profile.php';
+                    </script>";
+            }
 
             while ($row = mysqli_fetch_assoc($result))
             {
@@ -85,11 +89,21 @@
                 $ticket_price = $row["ticket_price"];
             }
 
-            if ( $amount * $ticket_price <= $balance)
+            if ($ticket_price <= $balance)
             {
-                $cost = $amount * $ticket_price;
-                $balance = $balance - $cost;
+                $balance = $balance - $ticket_price;
+                $event_capacity = $event_capacity + 1;
 
+                // event capacity update
+                $query = "UPDATE event SET current_capacity = $event_capacity WHERE event_id = $eventID";
+                $result = mysqli_query($connection, $query);
+
+                if (!$result)
+                {
+                    mysqli_error($connection);
+                }
+
+                // wallet balance update
                 $query = "UPDATE wallet SET balance = $balance WHERE wallet_id = $wallet_id";
                 $result = mysqli_query($connection, $query);
 
@@ -98,7 +112,7 @@
                     mysqli_error($connection);
                 }
 
-                $now = new DateTime();
+                $now = date_create()->format('Y-m-d H:i:s');
                 
                 $query = "INSERT INTO `event-pass` (date) VALUES ('$now')";
                 $result = mysqli_query($connection, $query);
@@ -117,8 +131,7 @@
                     $passID = $row["id"];
                 }
 
-                $query = "INSERT INTO attend (user_id, event_id, pass_id) " .
-                "VALUES ($userID, $eventID, $passID)";
+                $query = "INSERT INTO `attend` (user_id, event_id, pass_id) VALUES ($userID, $eventID, $passID)";
                 $result = mysqli_query($connection, $query);
 
                 if (!$result)
@@ -126,8 +139,7 @@
                     mysqli_error($connection);
                 }
 
-                $query = "INSERT INTO ticket (user_id, event_id, pass_id) " .
-                "VALUES ($userID, $eventID, $passID)";
+                $query = "INSERT INTO ticket (id, price) VALUES ($passID, $ticket_price)";
                 $result = mysqli_query($connection, $query);
 
                 if (!$result)
@@ -135,11 +147,22 @@
                     mysqli_error($connection);
                 }
 
+                $query = "INSERT INTO `buy` (ticket_id, user_id) VALUES ($passID, $userID)";
+                $result = mysqli_query($connection, $query);
 
+                if (!$result)
+                {
+                    mysqli_error($connection);
+                }
+
+                header("Location: ../profile.php");
             }
             else
             {
-                
+                echo "<script>
+                    alert('You have to add balance first!');
+                    window.location.href='../profile.php';
+                    </script>";
             }
 
 

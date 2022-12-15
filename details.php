@@ -50,9 +50,17 @@
             if ($pass == 'T') {
                 echo '<h4> Ticket Price: ' . $ticket_price . ' </h4>';
                 echo '<form method="post" action="form_process/purchase_ticket_process.php?id=' . $eventID . '">';
-                echo '<input style="width:100px" type="number" name="amount" placeholder="amount" min="0" class="form-control" required>';
-                echo '<input type="submit" name="ticket_submit" style="margin-right:10px" class="btn btn-outline-danger" value="Purchase Ticket">';
-                echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Send Ticket</a>';
+
+                $query = "SELECT * FROM attend WHERE event_id = $eventID AND user_id = $userID";
+                $result = mysqli_query($connection, $query);
+
+                if (mysqli_num_rows($result) <= 0) {
+                    echo '<input type="submit" name="ticket_submit" style="margin-right:10px" class="btn btn-outline-danger" value="Purchase Ticket">';
+                } else {
+                    echo '<a type="button" class="btn btn-outline-danger" href="profile.php">You have a ticket </a>';
+                }
+
+                echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Invite </a>';
                 echo '</form>';
             } else {
                 $query = "SELECT * FROM attend WHERE event_id = $eventID AND user_id = $userID";
