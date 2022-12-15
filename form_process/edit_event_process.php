@@ -55,6 +55,10 @@
         {
             $ticket_price = $row["ticket_price"];
         }
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            $image = $row["image"];
+        }
         while ($row = mysqli_fetch_assoc($result2))
         {
             $capacity = $row["capacity"];
@@ -96,6 +100,9 @@
         if(isset($_POST['description']) && !($_POST["description"] == "no-change")) {
             $description = $_POST["description"];
         }
+        if(isset($_POST['image']) && !($_POST["image"] == "no-change")) {
+            $description = $_POST["image"];
+        }
         if(isset($_POST['type']) && !($_POST["type"] == "no-change")) {
             $type = $_POST["type"];
         }
@@ -130,7 +137,7 @@
 
         $query = "UPDATE event " . 
                 "SET title = '$title', description = '$description', type = '$type', " . 
-                "ticket_price = '$ticket_price'" . 
+                "ticket_price = '$ticket_price', image = '$image'" . 
                 "WHERE event_id = $eventID";
         $result3 = mysqli_query($connection, $query);
         if (!$result3)

@@ -168,10 +168,17 @@
                                         </select>
                                         </div>
                                     </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-0 w-50">
+                                        <input type="text" name="image" class="form-control" required/>
+                                        <label class="form-label">Image Link</label>
+                                        </div>
+                                    </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <input type="submit" name="create-event" value="Create Event" class="btn btn-primary btn-lg" href="home_page.php">
                                     </div>
-
+                                    
                                 </form>
 
         </div>

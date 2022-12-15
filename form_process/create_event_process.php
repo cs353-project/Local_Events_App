@@ -28,6 +28,7 @@
         $registration_endtime = $_POST["registration_endtime"];
         $zero = 0;
         $type = $_POST["type"];
+        $image = $_POST["image"];
         if(isset($_POST['capacity_check']) && isset($_POST['capacity']) ) {
             $capacity = $_POST["capacity"];
         }
@@ -101,8 +102,8 @@
             }
 
             $creator_id = $_SESSION["id"];
-            $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, ticket_price) " . 
-            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active','$ticket_price')";
+            $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, ticket_price, image) " . 
+            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active','$ticket_price', '$image')";
             $result1 = mysqli_query($connection, $query1);
             if (!$result1)
             {

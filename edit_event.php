@@ -160,6 +160,13 @@
                                         </select>
                                         </div>
                                     </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline mb-0 w-50">
+                                        <input type="text" name="image" class="form-control"/>
+                                        <label class="form-label">Image</label>
+                                        </div>
+                                    </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <input type="submit" name="edit-event" value="Edit Event" class="btn btn-primary btn-lg" >
                                     </div>
