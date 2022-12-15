@@ -113,7 +113,7 @@
             $result5 = mysqli_query($connection, $event_id);
             while ($row = mysqli_fetch_assoc($result5))
             {
-                $ev_id = $row["location_id"];
+                $ev_id = $row["event_id"];
             }
             $query3 = "INSERT INTO restriction ( event_id, capacity, age, gender, pass_requirement) " . 
             "VALUES ( '$ev_id' ,'$capacity', '$age', '$gender', '$pass_requirement')";
