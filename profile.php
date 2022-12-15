@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-6">
                     <div style="padding:10px; background-color: white;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                        <h2>My Wallets<h2>
+                        <h2>My Wallet<h2>
                         
                         
                         <?php
@@ -56,7 +56,8 @@
                         echo '<div style="display:flex">';
                             if (mysqli_num_rows($result) <= 0)
                             {
-                                echo '<p style="color: red">No wallet available!</p>';
+                                echo '<p style="color: red">No wallet available!</p><br>';
+                                echo '<a href="./form_process/create_wallet_process.php" class="btn btn-primary" >Create Wallet</a>';
                             }
                             else
                             {
@@ -73,7 +74,7 @@
                             }
                         echo '</div>';
                         ?>
-                        <a href="./form_process/create_wallet_process.php" class="btn btn-primary" >Create Wallet</a>
+                        
                     </div>
                             
                 </div>
