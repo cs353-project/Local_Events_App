@@ -24,7 +24,7 @@
                     echo '
                             <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                                 <div style="height:300px; width:300px; background-color:white; margin-right:10px; border-radius:5px; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                                    <img src="musical-note.png" alt="Event Image" width="300" height="200">
+                                    <img src="'.$row["image"].'" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 16px; font-weight:bold; margin-left:10px; padding-top:10px">' . $row["title"] . '</p>
                                     <p style="font-size: 12px;color:red;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 12px; color:gray;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
@@ -61,7 +61,7 @@
                     echo '
                     <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                         <div style="height:200px; width:180px; background-color:white; margin-right:10px; border-radius:5px;border-radius:5px; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                            <img src="musical-note.png" alt="Event Image" width="180" height="100">
+                            <img src="'.$row["image"].'" alt="Event Image" width="180" height="100">
                             <p style="font-size: 16px; font-weight:bold; margin-left:10px; padding-top:10px">' . $row["title"] . '</p>
                             <p style="font-size: 12px;color:red;margin-left:10px">' . $row["start_time"] . '</p>
                             

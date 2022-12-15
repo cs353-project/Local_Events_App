@@ -248,7 +248,7 @@
                         echo '<div style="display:flex; padding:10px;">
                             <a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                             <div style="height:300px; width:300px; background-color:white; margin-right:10px; border-radius:5px; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                                    <img src="musical-note.png" alt="Event Image" width="300" height="200">
+                                    <img src="'.$row["image"].'" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 16px; font-weight:bold; margin-left:10px; ">' . $row["title"] . '</p>
                                     <p style="font-size: 12px;color:red;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 12px; color:gray;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
@@ -256,7 +256,7 @@
                     } else if ($tmp % 3 == 1) {
                         echo '<a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                             <div style="height:300px; width:300px; background-color:white; margin-right:10px; border-radius:5px; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                                    <img src="musical-note.png" alt="Event Image" width="300" height="200">
+                                    <img src="'.$row["image"].'" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 16px; font-weight:bold; margin-left:10px;">' . $row["title"] . '</p>
                                     <p style="font-size: 12px;color:red;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 12px; color:gray;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
@@ -264,7 +264,7 @@
                     } else if ($tmp % 3 == 2) {
                         echo '<a href="details.php?id=' . $row["event_id"] . '" style="text-decoration: none; background-color: none; color:black">
                             <div style="height:300px; width:300px; background-color:white; margin-right:10px; border-radius:5px; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
-                                    <img src="musical-note.png" alt="Event Image" width="300" height="200">
+                                    <img src="'.$row["image"].'" alt="Event Image" width="300" height="200">
                                     <p style="font-size: 16px; font-weight:bold; margin-left:10px; ">' . $row["title"] . '</p>
                                     <p style="font-size: 12px;color:red;margin-left:10px">' . $row["start_time"] . '</p>
                                     <p style="font-size: 12px; color:gray;margin-left:10px">' . $row["address_city"] . ' ' . $row["address_street"] . '</p>
