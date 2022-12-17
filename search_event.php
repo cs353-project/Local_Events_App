@@ -5,13 +5,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <body>
-
     <!-- Header -->
     <?php include_once("navbar.php"); ?>
-    <?php
-        $query2 = "SELECT * FROM event JOIN location ON event.location_id = location.location_id ";
-        ?>
-
 
     <div class="row" style="margin:10px">
         <form class="col-3" style="padding-top:10px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));" method="get"
@@ -24,9 +19,6 @@
                         <input type="input" name="keyword" placeholder="Event title" class="form-control" />
                     </div>
                 </div>
-
-
-
             </div>
 
             <div style="width=100px; height=100px; background-color:white; margin-top:10px">
@@ -59,9 +51,7 @@
                     <input type="checkbox" class="btn-check" name="informational" id="informational" autocomplete="off">
                     <label class="btn btn-outline-primary" for="informational">Informational</label>
                 </div>
-
             </div>
-
 
             <div style="width=100px; height=100px; background-color:white; margin-top:10px; padding:10px; ">
                 <h2>Pick Price</h2>
@@ -69,13 +59,13 @@
                     <div class="d-flex flex-row  mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline mb-0 w-20">
-                            <input type="number" name="min_price" placeholder="min" class="form-control" />
+                            <input type="float" name="min_price" placeholder="min" class="form-control" />
                         </div>
                     </div>
                     <div class="d-flex flex-row  mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline mb-0 w-20">
-                            <input type="number" name="max_price" placeholder="max" class="form-control" />
+                            <input type="float" name="max_price" placeholder="max" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -115,129 +105,101 @@
                 @$max_price = $_GET["max_price"];
                 @$location = $_GET["location"];
 
+                $id = $_SESSION["id"];
+                $now = date_create()->format('Y-m-d H:i:s');
                 $count = 0;
 
-                $result = mysqli_query($connection, $query2);
-                $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id ";
+                $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id WHERE registration_endtime > '$now'";
                 if ($competition == "on") {
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE type = 'competition'";
-                    }
+                    $query = $query . " AND type = 'competition'";
+                    $count = 1;
                 }
 
                 if ($festival == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'festival'";
+                        $query = $query . " AND type = 'festival'";
                     } else {
-                        $query = $query . "OR type = 'festival'";
+                        $query = $query . " OR type = 'festival'";
                     }
                 }
 
                 if ($music == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'music'";
+                        $query = $query . " AND type = 'music'";
                     } else {
-                        $query = $query . "OR type = 'music'";
+                        $query = $query . " OR type = 'music'";
                     }
                 }
 
                 if ($sports == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'sports'";
+                        $query = $query . " AND type = 'sports'";
                     } else {
-                        $query = $query . "OR type = 'sports'";
+                        $query = $query . " OR type = 'sports'";
                     }
                 }
 
                 if ($workshop == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'workshop'";
+                        $query = $query . " AND type = 'workshop'";
                     } else {
-                        $query = $query . "OR type = 'workshop'";
+                        $query = $query . " OR type = 'workshop'";
                     }
                 }
 
                 if ($art == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'art'";
+                        $query = $query . " AND type = 'art'";
                     } else {
-                        $query = $query . "OR type = 'art'";
+                        $query = $query . " OR type = 'art'";
                     }
                 }
 
                 if ($staged == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'staged'";
+                        $query = $query . " AND type = 'staged'";
                     } else {
-                        $query = $query . "OR type = 'staged'";
+                        $query = $query . " OR type = 'staged'";
                     }
                 }
 
                 if ($informational == "on") {
                     if ($count == 0) {
                         $count = 1;
-                        $query = $query . "WHERE type = 'informational'";
+                        $query = $query . " AND type = 'informational'";
                     } else {
-                        $query = $query . "OR type = 'informational'";
+                        $query = $query . " OR type = 'informational'";
                     }
                 }
 
                 if ($keyword != NULL) {
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE title LIKE '%$keyword%'";
-                    } else {
-                        $query = $query . "AND title LIKE '%$keyword%'";
-                    }
+                    $query = $query . " AND title LIKE '%$keyword%'";
                 }
 
                 if ($min_price != NULL && $max_price != NULL && $min_price > $max_price){
                     echo '<script>alert("min price should be smaller than max price")</script>';
-                }
-
-                if ($min_price != NULL && $min_price <= $max_price) {
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE ticket_price  >= $min_price";
-                    } else {
-                        $query = $query . "AND ticket_price  >= $min_price";
+                } else {
+                    if ($min_price != NULL) {
+                        $query = $query . " AND ticket_price >= $min_price";
                     }
-                }
-
-                if ($max_price != NULL && $min_price <= $max_price) {
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE ticket_price  <= $max_price";
-                    } else {
-                        $query = $query . "AND ticket_price  <= $max_price";
+    
+                    if ($max_price != NULL) {
+                        $query = $query . " AND ticket_price <= $max_price";
                     }
                 }
 
                 if ($location == "near_me") {
-                    $id = $_SESSION["id"];
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE address_street = (SELECT address_street FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
-                    } else {
-                        $query = $query . "AND address_street = (SELECT address_street FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
-                    }
+                    $query = $query . " AND address_street = (SELECT address_street FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
                 }
 
                 if ($location == "in_my_city") {
-                    $id = $_SESSION["id"];
-                    if ($count == 0) {
-                        $count = 1;
-                        $query = $query . "WHERE address_city = (SELECT address_city FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
-                    } else {
-                        $query = $query . "AND address_city = (SELECT address_city FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
-                    }
+                    $query = $query . " AND address_city = (SELECT address_city FROM location WHERE location_id = (SELECT location_id FROM share WHERE user_id = '$id'))";
                 }
 
                 $result = mysqli_query($connection, $query);
@@ -277,9 +239,6 @@
                 ?>
 
         </div>
-
     </div>
-
 </body>
-
 </html>
