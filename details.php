@@ -131,12 +131,21 @@
                                 }
                             }
 
-
-                            echo '<p>' . $count . ' likes</p></div>';
-                        }
-                    }
+                echo '<p>' . $count . ' likes</p>';
 
 
+                $show_like_query = "SELECT * FROM `like` WHERE user_id = $userID AND post_id = $postID";
+                $show_result = mysqli_query($connection, $show_like_query);
+
+                if (mysqli_num_rows($show_result) <= 0)
+                {
+                    echo '<a href="form_process/like_process.php?event_id=' . $eventID . '&post_id=' . $postID . '" class="btn btn-primary">Like</a>';
+                }
+
+                echo' </div>';
+            }
+        }
+                            
                     ?>
                 </div>
     </body>
