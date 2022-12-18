@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include("api/connection.php"); ?>
+<?php include("../api/connection.php"); ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">User Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New User</a>
+                        <a href="create_user.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New User</a>
                     </div>
                     <?php
                     // Include config file
