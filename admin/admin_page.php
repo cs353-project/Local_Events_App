@@ -10,9 +10,6 @@
             width: 600px;
             margin: 0 auto;
         }
-        table tr td:last-child{
-            width: 120px;
-        }
     </style>    
 <body>
     <div class="wrapper">
@@ -24,20 +21,20 @@
                         <a href="create_user.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New User</a>
                     </div>
                     <?php
-                    // Include config file
-                   
                     
                     // Attempt select query execution
                     $sql = "SELECT * FROM user";
                     if($result = mysqli_query($connection, $sql)){
                         if(mysqli_num_rows($result) > 0){
-                            echo '<table class="table table-bordered table-striped">';
+                            echo '<table class="table table-bordered table-striped w-auto">';
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>ID</th>";
-                                        echo "<th>first_name</th>";
-                                        echo "<th>middle_name</th>";
-                                        echo "<th>last_name</th>";
+                                        echo "<th>First Name</th>";
+                                        echo "<th>Middle Name</th>";
+                                        echo "<th>Last Name</th>";
+                                        echo "<th>Email</th>";
+                                        echo "<th>Age</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -48,6 +45,8 @@
                                         echo "<td>" . $row['first_name'] . "</td>";
                                         echo "<td>" . $row['middle_name'] . "</td>";
                                         echo "<td>" . $row['last_name'] . "</td>";
+                                        echo "<td>" . $row['mail'] . "</td>";
+                                        echo "<td>" . $row['age'] . "</td>";
                                         echo "<td>";
                                             
                                             echo '<a href="update_user.php?id='. $row['id'] .'" class="mr-3" title="Update User" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
