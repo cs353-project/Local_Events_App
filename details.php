@@ -85,7 +85,7 @@
                     }
 
 
-                    echo '<a type="button" class="btn btn-outline-danger" href="send_invitation.php">Send Invitation</a>';
+                    echo '<a type="button" class="btn btn-outline-danger" href="invitation.php">Send Invitation</a>';
                 }
                 ?>
 
