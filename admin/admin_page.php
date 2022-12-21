@@ -94,6 +94,7 @@
                                         echo "<th>Start Time</th>";
                                         echo "<th>End Time</th>";
                                         echo "<th>Current Capacity</th>";
+                                        echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -107,6 +108,9 @@
                                         echo "<td>" . $row['start_time'] . "</td>";
                                         echo "<td>" . $row['end_time'] . "</td>";
                                         echo "<td>" . $row['current_capacity'] . "</td>";
+                                        echo "<td>";
+                                            echo '<a href="delete_event.php?id='. $row['event_id'] .'" title="Delete Event" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
