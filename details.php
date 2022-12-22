@@ -83,9 +83,6 @@
                     } else {
                         echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="">Joined</a>';
                     }
-
-
-                    echo '<a type="button" class="btn btn-outline-danger" href="invitation.php">Send Invitation</a>';
                 }
                 ?>
 
