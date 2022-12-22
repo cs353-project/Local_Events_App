@@ -5,7 +5,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <body >
-
     <body>
         <?php include_once("navbar.php"); ?>
         <?php $userID = $_SESSION["id"]; ?>
@@ -40,16 +39,14 @@
                                    
                                 </div>
                                 <a type="button" class="btn btn-outline-danger" href="edit_profile.php"
-                                        style="">Edit Profile</a>
-                                
+                                        style="">Edit Profile</a>    
                     </div>
-
                 </div>
+
                 <div class="col-6">
                     <div style="padding:10px; background-color: white;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));">
                         <h2>My Wallet<h2>
-                        
-                        
+                              
                         <?php
                             $query = "SELECT * FROM wallet WHERE user_id = $userID";
                             $result = mysqli_query($connection, $query);
@@ -74,14 +71,12 @@
                             }
                         echo '</div>';
                         ?>
-                        
-                    </div>
-                            
-                </div>
-                            
+
+                    </div>      
+                </div>        
             </div>
+
             <div style="margin-top:20px; height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
-            
             <div class="row">
                 <h2>Upcoming Events</h2>
 
@@ -92,11 +87,8 @@
                                     JOIN user u ON a.user_id = u.id  
                                     JOIN event e ON a.event_id = e.event_id
                                     JOIN location l ON e.location_id = l.location_id
-                                    WHERE u.id = $userID
-                                    ";
-    
-                                    
-                            
+                                    WHERE u.id = $userID";
+      
                             $result = mysqli_query($connection, $query);
                             
                             while ($row = mysqli_fetch_assoc($result))
@@ -107,13 +99,9 @@
                                 echo '<h4 style="font-size: 12px; color:gray;">' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
                                 echo '<a type="button" class="btn btn-outline-danger" href="details.php?id=' . $row["event_id"] . '" style="">Details</a>';
                             echo '</div>';
-                            }
-                            
-                            
+                            }    
                         ?>
-                    
                 </div>
-
                 
             </div>
             <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
@@ -135,6 +123,7 @@
                             echo '<h4 style="font-size: 12px;color:red;">' . $row["start_time"] . '</h4>';
                             echo '<h4 style="font-size: 12px; color:gray;">' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
                             echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . '" style="">Edit</a>';
+                            echo '<a type="button" class="btn btn-outline-danger" href="invitation.php?id=' . $row["event_id"] . '" style="padding-left:10px">Invite</a>';
                             echo '</div>';
                         }
                     ?>
@@ -142,31 +131,130 @@
                 </div>
             </div>
 
-            <!-- <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
+            <div style="margin-top:20px; height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181">
+            
             <div class="row">
-                <h2>My Posts</h2>
+                <h2>My Invitations</h2>
 
                 <div style="display:flex;">
-                    <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Image of the post</h4>
-                        <h4>String of the post</h4>
-                        <h4>Rating ---</h4>
-                        <a type="button" class="btn btn-outline-danger" href="edit_event.php?id=event_id"
-                                    style="margin:10px">Remove</a>
-                    </div>
-                    <div style="margin:10px; width:300px; background-color:white">
-                        <h4>Image of the post</h4>
-                        <h4>String of the post</h4>
-                        <h4>Rating ---</h4>
-                        <a type="button" class="btn btn-outline-danger" href="edit_event.php?id=event_id"
-                                    style="margin:10px">Remove</a>
-                    </div>
+                    
+                        <?php
+                            $query = "SELECT * FROM event e  
+                                    JOIN attend a ON a.event_id = e.event_id
+                                    JOIN send s ON s.invitation_id = a.pass_id
+                                    JOIN location l ON e.location_id = l.location_id
+                                    JOIN `event-pass` p ON p.id = a.pass_id
+                                    JOIN invitation i ON i.id = p.id
+                                    WHERE s.receiver_id = $userID";
+       
+                            $result = mysqli_query($connection, $query);
+                            
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
+                            if($row["response"] == NULL){
+                                echo '<form style="margin:10px;  background-color:white; filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5)); border-radius:5px; padding:10px" method="post" action="profile.php">';
+                                echo '<h4 style="font-size: 16px; font-weight:bold;  ">' . $row["title"] . '</h4>';
+                                echo '<h4 style="font-size: 12px;color:red;">' . $row["start_time"] . '</h4>';
+                                echo '<h4 style="font-size: 12px; color:gray;">' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
+                                echo '<input type="submit" class="btn btn-outline-danger" name="accept" value="Accept" style="">';
+                                echo '<input type="submit" class="btn btn-outline-danger" name="decline" value="Decline" style="">';
+                                echo '</form>';
+                            }
+                            }
+                            
+                            if (isset($_POST["accept"])){
+                                $query = "SELECT invitation_id FROM send WHERE receiver_id = $userID";
+                                $result = mysqli_query($connection, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)){
+                                    $invitation_id = $row["invitation_id"];
+                                }
+                                
+                                $query2 = "UPDATE invitation SET response = 'accepted' WHERE id = $invitation_id";
+                                $result2 = mysqli_query($connection, $query2);
+
+                                if (!$result2){
+                                    mysqli_error($connection);
+                                }
+                            }
+
+                            if (isset($_POST["decline"])){
+                                $query = "SELECT invitation_id FROM send WHERE receiver_id = $userID";
+                                $result = mysqli_query($connection, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)){
+                                    $invitation_id = $row["invitation_id"];
+                                }
+                                
+                                $query2 = "UPDATE invitation SET response = 'declined' WHERE id = $invitation_id";
+                                $result2 = mysqli_query($connection, $query2);
+
+                                if (!$result2)
+                                {
+                                    mysqli_error($connection);
+                                }
+
+                                $query = "SELECT event_id FROM attend WHERE pass_id = $invitation_id";
+                                $result = mysqli_query($connection, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)){
+                                    $event_id = $row["event_id"];
+                                }
+
+                                $query = "SELECT * FROM event WHERE event_id = $event_id";
+                                $result = mysqli_query($connection, $query);
+                    
+                                while ($row = mysqli_fetch_assoc($result))
+                                {
+                                    $event_capacity = $row["current_capacity"];
+                                }
+
+                                // event capacity update
+                                $event_capacity = $event_capacity - 1;
+                                $query = "UPDATE event SET current_capacity = $event_capacity WHERE event_id = $event_id";
+                                $result = mysqli_query($connection, $query);
+
+                                // attend update
+                                $query = "DELETE FROM `attend` WHERE pass_id = $invitation_id";
+                                $result = mysqli_query($connection, $query);
+
+                                if (!$result)
+                                {
+                                    mysqli_error($connection);
+                                }
+
+                                // send update
+                                $query = "DELETE FROM `send` WHERE invitation_id = $invitation_id";
+                                $result = mysqli_query($connection, $query);
+
+                                if (!$result)
+                                {
+                                    mysqli_error($connection);
+                                }
+
+                                // invitation update
+                                $query = "DELETE FROM `invitation` WHERE id = $invitation_id";
+                                $result = mysqli_query($connection, $query);
+
+                                if (!$result)
+                                {
+                                    mysqli_error($connection);
+                                }
+
+                                // event-pass update
+                                $query = "DELETE FROM `event-pass` WHERE id = $invitation_id";
+                                $result = mysqli_query($connection, $query);
+
+                                if (!$result)
+                                {
+                                    mysqli_error($connection);
+                                }
+                            }
+                        ?>
+                    
                 </div>
 
                 
             </div>
-            </div> -->
-
     </body>
-
 </html>
