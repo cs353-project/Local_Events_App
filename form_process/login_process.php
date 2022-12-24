@@ -24,7 +24,17 @@
                 {
                     //echo '<script>alert("Successfully Logined!")</script>';
                     $_SESSION["id"] = $row["id"];
-                    header("Location: ../home_page.php");
+                    $user_type = $row["type"];
+                    
+                    if ($user_type == "U")
+                    {
+                        header("Location: ../home_page.php");
+                    }
+                    else if ($user_type == "A")
+                    {
+                        header("Location: ../admin/admin_page.php");
+                    }
+                    
                 }
                 else
                 {
