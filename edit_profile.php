@@ -26,14 +26,13 @@
                                         $result = mysqli_query($connection, $query);
 
                                         $first_name = ""; $middle_name = ""; $last_name = "";
-                                        $birth_date = ""; $gender = ""; $mail = "";
+                                        $gender = ""; $mail = "";
 
                                         while ($row = mysqli_fetch_assoc($result))
                                         {
                                             $first_name = $row["first_name"];
                                             $middle_name = $row["middle_name"];
                                             $last_name = $row["last_name"];
-                                            $birth_date = $row["dateOfBirth"];
                                             $gender = $row["gender"];
                                             $mail = $row["mail"];
                                         }
@@ -61,14 +60,6 @@
                                             <input type="text" name="last_name" class="form-control" value=<?php echo $last_name ?> required/>
                                             <label class="form-label">Your Last Name</label>
                                         </div>
-                                    </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="date" name="date" class="form-control" required/>
-                                            <label class="form-label">Your Birth Date</label>
-                                        </div> 
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
