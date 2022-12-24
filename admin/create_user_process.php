@@ -20,7 +20,6 @@
         mysqli_real_escape_string($connection, $last_name);
         mysqli_real_escape_string($connection, $mail);
         mysqli_real_escape_string($connection, $password);
-        mysqli_real_escape_string($connection, $repeat_password);
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
