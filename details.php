@@ -16,8 +16,6 @@
                 WHERE event_id =  $eventID";
             $result = mysqli_query($connection, $query);
 
-
-
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<h1>Details of ' . $row["title"] . '';
                 echo '</h1>';
@@ -79,7 +77,7 @@
                     if (mysqli_num_rows($result) <= 0) {
                         echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/join_process.php?id=' . $eventID . '">Join</a>';
                     } else {
-                        echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="">Disjoin</a>';
+                        echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/disjoin_process.php?id=' . $eventID . '">Disjoin</a>';
                     }
                 }
                 ?>
