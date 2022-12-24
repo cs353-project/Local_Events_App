@@ -118,11 +118,13 @@
                 $age = null;
             }
             if(isset($_POST['gender_check']) && isset($_POST['gender']) ) {
+                $gender = $_POST['gender'];
                 if($gender == "male"){
                     $gender = "M";
                 }
-                else
+                else{
                     $gender = "F";
+                }
                 $query = "UPDATE restriction " . 
                 "SET gender = '$gender'".
                 "WHERE event_id = $ev_id";
