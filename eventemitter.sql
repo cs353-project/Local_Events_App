@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2022 at 09:47 AM
+-- Generation Time: Dec 24, 2022 at 12:09 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -75,19 +75,10 @@ CREATE TABLE `event` (
   `end_time` datetime NOT NULL,
   `current_capacity` int(11) NOT NULL DEFAULT 0,
   `status` varchar(255) NOT NULL,
-  `rating` float(2,1) NOT NULL DEFAULT 0.0
+  `rating` float(2,1) NOT NULL DEFAULT 0.0,
+  `ticket_price` float(8,2) DEFAULT 0.00,
+  `image` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`event_id`, `location_id`, `title`, `creator_id`, `description`, `type`, `registration_endtime`, `start_time`, `end_time`, `current_capacity`, `status`, `rating`) VALUES
-(1, 1, 'Futsal Turnuvası', 2, 'mükemmel', 'competition', '2022-12-11 22:15:20', '2022-12-12 22:15:20', '2022-12-13 22:15:20', 25, 'status', 0.0),
-(2, 1, 'Karaoke', 6, 'baya iyi', 'music', '2022-12-12 22:16:16', '2022-12-13 22:16:16', '2022-12-14 22:16:16', 50, 'status', 0.0),
-(3, 1, 'ted talk', 6, 'inanılmaz', 'informational', '2022-12-15 22:20:40', '2022-12-17 11:20:40', '2022-12-17 22:20:40', 88, 'status', 0.0),
-(4, 2, 'Sefo Konseri', 6, 'Baya iyi Olacak', 'festival', '2022-12-12 09:29:36', '2022-12-15 09:29:36', '2022-12-17 09:29:36', 2500, 'current', 0.0),
-(5, 3, 'Felsefe Şenliği', 6, 'Muazzam', 'festival', '2022-12-12 09:42:36', '2022-12-15 09:42:36', '2022-12-18 09:42:36', 235, 'Active', 0.0);
 
 -- --------------------------------------------------------
 
@@ -149,15 +140,6 @@ CREATE TABLE `location` (
   `online_address` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `location`
---
-
-INSERT INTO `location` (`location_id`, `address_city`, `address_street`, `address_building`, `online_address`) VALUES
-(1, 'Ankara', 'Çankaya', 'Bilkent', '78'),
-(2, 'Antalya', 'Muratpaşa', 'Konyaaltı Plajı', 'Erkanlar Beach'),
-(3, 'Ankara', 'Polatlı', 'Merkez', 'Kent+');
-
 -- --------------------------------------------------------
 
 --
@@ -207,14 +189,6 @@ CREATE TABLE `share` (
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `share`
---
-
-INSERT INTO `share` (`user_id`, `location_id`) VALUES
-(2, 1),
-(6, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -252,8 +226,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `type`, `first_name`, `middle_name`, `last_name`, `dateOfBirth`, `age`, `gender`, `mail`, `password`, `rating`) VALUES
-(2, 'U', 'Recep', '', 'Uysal', '2000-06-20', 22, 'M', 'ruysal@gmail.com', '$2y$10$bJHT/wO.00Hw6vOkvOZgEeCNczllUKlUrZoLhy9Wxi13BoVcTo4aW', 0.0),
-(6, 'U', 'Efe', '', 'Erkan', '2000-09-01', 22, 'M', 'eferkan112@gmail.com', '$2y$10$Pu2Uso2OZgwjnPcNPKZHqecb1hyu9JEh5Tled9iQUsxzq3TODqP1a', 0.0);
+(2, 'U', 'Recep', '', 'Uysal', '2000-12-13', 21, 'M', 'ruysal@gmail.com', '$2y$10$bJHT/wO.00Hw6vOkvOZgEeCNczllUKlUrZoLhy9Wxi13BoVcTo4aW', 0.0),
+(6, 'U', 'Efe', '', 'Erkan', '2000-09-01', 22, 'M', 'eferkan112@gmail.com', '$2y$10$Pu2Uso2OZgwjnPcNPKZHqecb1hyu9JEh5Tled9iQUsxzq3TODqP1a', 0.0),
+(7, 'U', 'aa', 'aa', 'aa', '1999-03-03', 23, 'M', 'a@a', '$2y$10$/hm0rrORdK7PM30pe.RBP.A8KOh0rTSD6LvSV2BjZK7yiQ6TpW5ju', 0.0);
 
 -- --------------------------------------------------------
 
@@ -276,15 +251,15 @@ CREATE TABLE `wallet` (
 --
 ALTER TABLE `attend`
   ADD PRIMARY KEY (`user_id`,`event_id`),
-  ADD KEY `event_id` (`event_id`),
-  ADD KEY `pass_id` (`pass_id`);
+  ADD KEY `pass_id` (`pass_id`),
+  ADD KEY `attend_ibfk_1` (`event_id`);
 
 --
 -- Indexes for table `buy`
 --
 ALTER TABLE `buy`
   ADD PRIMARY KEY (`ticket_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `buy_ibfk_2` (`user_id`);
 
 --
 -- Indexes for table `comment`
@@ -292,15 +267,15 @@ ALTER TABLE `buy`
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`,`post_id`),
   ADD KEY `post_id` (`post_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `comment_ibfk_2` (`user_id`);
 
 --
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`event_id`),
-  ADD KEY `creator_id` (`creator_id`),
-  ADD KEY `location_id` (`location_id`);
+  ADD KEY `event_ibfk_1` (`creator_id`),
+  ADD KEY `event_ibfk_2` (`location_id`);
 
 --
 -- Indexes for table `event-pass`
@@ -338,8 +313,8 @@ ALTER TABLE `location`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`user_id`,`event_id`),
-  ADD KEY `event_id` (`event_id`),
-  ADD KEY `post_id` (`post_id`);
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `post_ibfk_2` (`event_id`);
 
 --
 -- Indexes for table `restriction`
@@ -351,16 +326,16 @@ ALTER TABLE `restriction`
 -- Indexes for table `send`
 --
 ALTER TABLE `send`
-  ADD PRIMARY KEY (`sender_id`,`receiver_id`),
-  ADD KEY `receiver_id` (`receiver_id`),
-  ADD KEY `invitation_id` (`invitation_id`);
+  ADD PRIMARY KEY (`sender_id`,`receiver_id`,`invitation_id`),
+  ADD KEY `invitation_id` (`invitation_id`),
+  ADD KEY `send_ibfk_2` (`receiver_id`);
 
 --
 -- Indexes for table `share`
 --
 ALTER TABLE `share`
   ADD PRIMARY KEY (`user_id`,`location_id`),
-  ADD KEY `location_id` (`location_id`);
+  ADD KEY `share_ibfk_2` (`location_id`);
 
 --
 -- Indexes for table `ticket`
@@ -379,7 +354,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `wallet`
   ADD PRIMARY KEY (`wallet_id`,`user_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `wallet_ibfk_1` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -395,25 +370,25 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `event-pass`
 --
 ALTER TABLE `event-pass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `event-post`
 --
 ALTER TABLE `event-post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -425,7 +400,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -435,8 +410,8 @@ ALTER TABLE `wallet`
 -- Constraints for table `attend`
 --
 ALTER TABLE `attend`
-  ADD CONSTRAINT `attend_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`),
-  ADD CONSTRAINT `attend_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `attend_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `attend_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `attend_ibfk_3` FOREIGN KEY (`pass_id`) REFERENCES `event-pass` (`id`);
 
 --
@@ -444,21 +419,21 @@ ALTER TABLE `attend`
 --
 ALTER TABLE `buy`
   ADD CONSTRAINT `buy_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`),
-  ADD CONSTRAINT `buy_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `buy_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `event-post` (`post_id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `event`
 --
 ALTER TABLE `event`
-  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
+  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `invitation`
@@ -470,37 +445,37 @@ ALTER TABLE `invitation`
 -- Constraints for table `like`
 --
 ALTER TABLE `like`
-  ADD CONSTRAINT `like_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `like_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `like_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `event-post` (`post_id`);
 
 --
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`),
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `post_ibfk_3` FOREIGN KEY (`post_id`) REFERENCES `event-post` (`post_id`);
 
 --
 -- Constraints for table `restriction`
 --
 ALTER TABLE `restriction`
-  ADD CONSTRAINT `restriction_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
+  ADD CONSTRAINT `restriction_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `send`
 --
 ALTER TABLE `send`
-  ADD CONSTRAINT `send_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `send_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `send_ibfk_3` FOREIGN KEY (`invitation_id`) REFERENCES `invitation` (`id`);
+  ADD CONSTRAINT `send_ibfk_1` FOREIGN KEY (`invitation_id`) REFERENCES `invitation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `send_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `send_ibfk_3` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `share`
 --
 ALTER TABLE `share`
-  ADD CONSTRAINT `share_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `share_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
+  ADD CONSTRAINT `share_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `share_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ticket`
@@ -512,9 +487,6 @@ ALTER TABLE `ticket`
 -- Constraints for table `wallet`
 --
 ALTER TABLE `wallet`
-  ADD CONSTRAINT `wallet_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `wallet_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
