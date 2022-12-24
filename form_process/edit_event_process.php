@@ -15,144 +15,165 @@
         }
         $query3 = "SELECT * FROM `location` WHERE location_id = $location_id;";
         $result3 = mysqli_query($connection, $query3);
-
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $title = $row["title"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $description = $row["description"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $type = $row["type"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $registration_endtime = $row["registration_endtime"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $start_time = $row["start_time"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $end_time = $row["end_time"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $current_capacity = $row["current_capacity"];
-        }while ($row = mysqli_fetch_assoc($result))
-        {
-            $status = $row["status"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $rating = $row["rating"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $ticket_price = $row["ticket_price"];
-        }
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            $image = $row["image"];
-        }
-        while ($row = mysqli_fetch_assoc($result2))
-        {
-            $capacity = $row["capacity"];
-        }
-        while ($row = mysqli_fetch_assoc($result2))
-        {
-            $age = $row["age"];
-        }
-        while ($row = mysqli_fetch_assoc($result2))
-        {
-            $gender = $row["gender"];
-        }
-        while ($row = mysqli_fetch_assoc($result2))
-        {
-            $pass_requirement = $row["pass_requirement"];
-        }
-        while ($row = mysqli_fetch_assoc($result3))
-        {
-            $address_street = $row["address_street"];
-        }
-        while ($row = mysqli_fetch_assoc($result3))
-        {
-            $address_building = $row["address_building"];
-        }
-        while ($row = mysqli_fetch_assoc($result3))
-        {
-            $online_address = $row["title"];
-        }
+        
         
 
 
-        if(isset($_POST['title']) && !($_POST["title"] == "no-change")) {
-            $title = $_POST["title"];
-        }
         // Query Processing
-        if(isset($_POST['title']) && !($_POST["title"] == "no-change")) {
+        if(isset($_POST['title']) && !($_POST["title"] == "")) {
             $title = $_POST["title"];
+            $query = "UPDATE event " . 
+            "SET title = '$title'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['description']) && !($_POST["description"] == "no-change")) {
+        if(isset($_POST['start_time']) && isset($_POST['end_time']) && isset($_POST['registration_endtime'])&&
+         !($_POST["start_time"] == "") && !($_POST["end_time"] == "") && !($_POST["registration_endtime"] == "")) {
+            $mindate = date("Y-m-d", strtotime("+3 weeks"));
+            $mintime = date("h:i");
+            $min = $mindate."T".$mintime;
+            $maxdate = date("Y-m-d", strtotime("+3 years"));
+            $maxtime = date("h:i");
+            $max = $maxdate."T".$maxtime;
+            $date = date('y-m-d h:i:s');
+            $start_time = $_POST["start_time"];
+            $end_time = $_POST["end_time"];
+            $registration_endtime = $_POST["registration_endtime"];
+
+            //start_time > end_time|| $registration_endtime > $start_time || $registration_endtime <= $date || $end_date > $max_date  
+            if( $start_time >= $end_time  || $registration_endtime >= $start_time || $registration_endtime <= $min || $end_time > $max )
+            {
+                $_SESSION["time-error"] = true;
+                header("Location: ../profile.php");
+            }
+            else{
+                $_SESSION["time-error"] = false;
+                $query = "UPDATE event " . 
+                "SET start_time = '$start_time', end_time = '$end_time', registration_endtime = '$registration_endtime'".
+                "WHERE event_id = $eventID";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            
+        }
+        else{
+            $_SESSION["time-error"] = false;
+        }
+        if(isset($_POST['description']) && !($_POST["description"] == "")) {
             $description = $_POST["description"];
+            $query = "UPDATE event " . 
+            "SET description = '$description'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['image']) && !($_POST["image"] == "no-change")) {
-            $description = $_POST["image"];
+        if(isset($_POST['image']) && !($_POST["image"] == "")) {
+            $image = $_POST["image"];
+            $query = "UPDATE event " . 
+            "SET image = '$image'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['type']) && !($_POST["type"] == "no-change")) {
+        if(isset($_POST['type']) && !($_POST["type"] == "no_change")) {
             $type = $_POST["type"];
+            $query = "UPDATE event " . 
+            "SET type = '$type'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['address_street']) && !($_POST["address_street"] == "no-change")) {
+        if(isset($_POST['address_street']) && !($_POST["address_street"] == "")) {
             $address_street = $_POST["address_street"];
+            $query = "UPDATE location " . 
+            "SET address_street = '$address_street'".
+            "WHERE location_id = $location_id";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['address_building']) && !($_POST["address_building"] == "no-change")) {
+        if(isset($_POST['address_building']) && !($_POST["address_building"] == "")) {
             $address_building = $_POST["address_building"];
+            $query = "UPDATE location " . 
+            "SET address_building = '$address_building'".
+            "WHERE location_id = $location_id";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
-        if(isset($_POST['online_address']) && !($_POST["online_address"] == "no-change")) {
+        if(isset($_POST['online_address']) && !($_POST["online_address"] == "")) {
             $online_address = $_POST["online_address"];
+            $query = "UPDATE location " . 
+            "SET online_address = '$online_address'".
+            "WHERE location_id = $location_id";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
         if(isset($_POST['capacity_check']) && isset($_POST['capacity']) ) {
             $capacity = $_POST["capacity"];
+            $query = "UPDATE restriction " . 
+            "SET capacity = '$capacity'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
         if(isset($_POST['age_check']) && isset($_POST['age'])) {
             $age = $_POST["age"];
+            $query = "UPDATE restriction " . 
+            "SET age = '$age'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
         if(isset($_POST['gender_check']) && isset($_POST['gender']) ) {
             if($gender == "male"){
                 $gender = "M";
             }
-            else
+            else{
                 $gender = "F";
-        }
-        if(isset($_POST['pass_requirement'])) {
-            $pass_requirement = "T";
-        }
-        if(isset($_POST['price']) && isset($_POST['pass_requirement'])) {
-            $ticket_price = $_POST["price"];
+            }
+            $query = "UPDATE restriction " . 
+            "SET gender = '$gender'".
+            "WHERE event_id = $eventID";
+            $result3 = mysqli_query($connection, $query);
+            if (!$result3)
+            {
+                mysqli_error($connection);
+            }
         }
 
-        $query = "UPDATE event " . 
-                "SET title = '$title', description = '$description', type = '$type', " . 
-                "ticket_price = '$ticket_price', image = '$image'" . 
-                "WHERE event_id = $eventID";
-        $result3 = mysqli_query($connection, $query);
-        if (!$result3)
-        {
-            mysqli_error($connection);
-        }
-        $query = "UPDATE restriction " . 
-                "SET capacity = '$capacity', age = '$age', gender = '$gender', " . 
-                "pass_requirement = '$pass_requirement'" . 
-                "WHERE event_id = $eventID";
-        $result4 = mysqli_query($connection, $query);
-        $query = "UPDATE location " . 
-                "SET address_street = '$address_street', address_building = '$address_building', " . 
-                "online_address = '$online_address'" . 
-                "WHERE location_id = $location_id";
+        
+
+       
         header("Location: ../profile.php");
     }
 ?>  

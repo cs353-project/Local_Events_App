@@ -19,7 +19,14 @@
                                     <div class="col-4">
                                         <img style="margin:10px; background-color:black; border-radius:75px;" src="musical-note.png" alt="Event Image" width="150" height="150">
                                     </div>
+                                    <?php
+                                    if (isset($_SESSION["time-error"]) && $_SESSION["time-error"] == true)
+                                    {
+                                        echo '<script>alert("Enter valid times!")</script>';
 
+                                        unset($_SESSION["time-error"]);
+                                    }
+                                    ?>
                                     <?php
                                         $query = "SELECT * FROM user WHERE id = $userID";
                                         $result = mysqli_query($connection, $query);

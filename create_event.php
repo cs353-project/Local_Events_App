@@ -96,7 +96,7 @@
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline mb-1 w-50">
                                             <input type="datetime-local" name="registration_endtime" class="form-control" required/>
-                                            <label class="form-label">Registiration End Date(sooner than start date later then current date) </label>
+                                            <label class="form-label">Registiration End Date(sooner than start date later than current date) </label>
                                         </div>
                                     </div>
 
