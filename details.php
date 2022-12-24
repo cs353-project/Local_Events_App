@@ -21,8 +21,8 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<h1>Details of ' . $row["title"] . '';
                 echo '</h1>';
-                echo '<div class="col-4">';
-                echo '<img src="' . $row["image"] . '" alt="Event Image" width="400" height="400">';
+                echo '<div class="col-3">';
+                echo '<img src="' . $row["image"] . '" alt="Event Image" width="" height="">';
             }
 
 
@@ -40,13 +40,13 @@
                 $result = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<h2>' . $row["title"] . '</h2>';
-                    echo '<h3>' . $row["start_time"] . '</h3>';
-                    echo '<h3>' . $row["address_city"] . '</h3>';
-                    echo '<h3>' . $row["address_street"] . '</h3>';
-                    echo '<h3>' . $row["address_building"] . '</h3>';
-                    echo '<h3>' . $row["type"] . '</h3>';
-                    echo '<h3>' . $row["description"] . '</h3>';
+                    echo '<h4>' . $row["title"] . '</h4>';
+                    echo '<h4>' . $row["start_time"] . '</h4>';
+                    echo '<h4>' . $row["address_city"] . '</h4>';
+                    echo '<h4>' . $row["address_street"] . '</h4>';
+                    echo '<h4>' . $row["address_building"] . '</h4>';
+                    echo '<h4>' . $row["type"] . '</h4>';
+                    echo '<h4>' . $row["description"] . '</h4>';
                     $ticket_price = $row["ticket_price"];
                 }
                 ?>
@@ -58,7 +58,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     $pass = $row["pass_requirement"];
                 }
-
+                
                 if ($pass == 'T') {
                     echo '<h4> Ticket Price: ' . $ticket_price . ' </h4>';
                     echo '<form method="post" action="form_process/purchase_ticket_process.php?id=' . $eventID . '">';
@@ -108,8 +108,8 @@
 
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<div class="col-4">
-                            <img src="musical-note.png" alt="Event Image" width="200" height="200">
+                            echo '<div class="col-2 m-2" >
+                            <img src="'.$row["photograph"].'" alt="Event Image" width="350" height="200">
                             <p>' . $row["text"] . '</p>';
 
                             $postID = $row["post_id"];

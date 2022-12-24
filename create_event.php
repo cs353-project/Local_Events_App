@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <body style="background-color:#EEE2E2">
+    <body >
     <?php include_once("navbar.php"); ?>
     <?php
         include("api/header.php");
@@ -10,7 +10,7 @@
     ?>
      
 
-        <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; background-color: #AE8181"><div>
+        <div style=" height:0px; left:20px; top:112px; border:1px solid #AE8181; 1"><div>
 
         <div style="padding:10px">
             <h2>Create Event</h2>
