@@ -69,7 +69,7 @@
 
             $creator_id = $_SESSION["id"];
             $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, ticket_price, image) " . 
-            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active',, '$image')";
+            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active',NULL, '$image')";
             $result1 = mysqli_query($connection, $query1);
             if (!$result1)
             {
