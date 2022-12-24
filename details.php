@@ -25,7 +25,6 @@
                 echo '<img src="' . $row["image"] . '" alt="Event Image" width="400" height="400">';
             }
 
-
             echo '</div>';
             ?>
             <div class="col-8">
@@ -80,7 +79,7 @@
                     if (mysqli_num_rows($result) <= 0) {
                         echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="./form_process/join_process.php?id=' . $eventID . '">Join</a>';
                     } else {
-                        echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="">Joined</a>';
+                        echo '<a type="button" style="margin-right:10px" class="btn btn-outline-danger" href="">Disjoin</a>';
                     }
                 }
                 ?>
