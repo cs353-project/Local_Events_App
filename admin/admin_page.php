@@ -156,10 +156,33 @@
                                         echo "<td>" . $row['num_of_attend'] . "</td>";
                                     echo "</tr>";
                                 }
-                                echo "</tbody>";                            
+                                echo "</tbody>";                       
                             echo "</table>";
                         }
                         
+                    ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mt-5 mb-3 clearfix">
+                        <h2 class="pull-left">Monthly Based Popular Event</h2>
+                    </div>
+                    <form action="admin_page.php" method="post">
+                        <div class="form-outline mb-4" style="width: 200;">
+                            <input type="text" name="month" class="form-control"/>
+                            <label class="form-label">Month</label>
+                        </div>
+                        <div>
+                            <input type="submit" name="submiy" value="Submit" class="btn btn-primary btn-lg">
+                        </div>
+                    </form>
+                    <?php
+                        if (isset($_POST["submit"]))
+                        {
+                            $month = $_POST["month"];
+                        }
                     ?>
                 </div>
             </div>
