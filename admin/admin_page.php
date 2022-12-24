@@ -127,8 +127,42 @@
                     ?>
                 </div>
             </div>  
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mt-5 mb-3 clearfix">
+                        <h2 class="pull-left">User Performance</h2>
+                    </div>
+                    <?php
+                        $query = "SELECT u.first_name, u.middle_name, u.last_name, COUNT(event_id) as num_of_attend FROM user u " . 
+                        "JOIN attend a ON u.id = a.user_id " . 
+                        "GROUP BY u.first_name, u.middle_name, u.last_name";
 
-
+                        $result = mysqli_query($connection, $query);
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            echo '<table class="table table-bordered table-striped w-auto">';
+                                echo "<thead>";
+                                    echo "<tr>";
+                                        echo "<th>Name</th>";
+                                        echo "<th>Event Count</th>";
+                                        
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while($row = mysqli_fetch_array($result)){
+                                    echo "<tr>";
+                                        echo "<td>" . $row['u.first_name'] . ' ' . $row["u.middle_name"] . ' ' . $row["u.last_name"] . "</td>";
+                                        echo "<td>" . $row['num_of_attend'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                        }
+                        
+                    ?>
+                </div>
+            </div>
 
         </div>
     </div>
