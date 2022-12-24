@@ -66,6 +66,18 @@ else
     {
         mysqli_error($connection);
     }
+
+    $event_capacity = $event_capacity + 1;
+
+    // event capacity update
+    $query = "UPDATE event SET current_capacity = $event_capacity WHERE event_id = $eventID";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result)
+    {
+        mysqli_error($connection);
+    }
+
 }
 
 header("Location: ../details.php?id=$eventID");
