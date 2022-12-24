@@ -186,6 +186,7 @@
                     ?>
                 </div>
             </div>
+            <a class="btn btn-danger" href="../form_process/logout_process.php">Logout</a>
 
         </div>
     </div>
