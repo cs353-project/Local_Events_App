@@ -48,15 +48,21 @@
 
         if( !is_null($res_age) && $user_age < $res_age )
         {
-            
+            echo "<script>alert('Your age is not suitable for this event');
+            window.location.href='../profile.php';
+            </script>";
         }
         else if( !is_null($res_gender) && $user_gender != $res_gender)
         {
-
+            echo "<script>alert('Your gender is not suitable for this event');
+            window.location.href='../profile.php';
+            </script>";
         }
         else if( !is_null($res_capacity) && $event_capacity >= $res_capacity )
         {
-        
+            echo "<script>alert('Event is full');
+            window.location.href='../profile.php';
+            </script>";
         }
         else
         {

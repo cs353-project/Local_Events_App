@@ -8,17 +8,17 @@
             <h2>Invite Friend</h2>
             <form class="mx-1 mx-md-4" method="post" action="invitation.php?id=<?php echo $_GET["id"];?>">
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline mb-1 w-50">
-                                            <input type="mail" name="mail" class="form-control" required/>
-                                            <label class="form-label">MAIL</label>
-                                        </div>
-                                    </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline mb-1 w-50">
+                        <input type="mail" name="mail" class="form-control" required/>
+                        <label class="form-label">MAIL</label>
+                    </div>
+                </div>
 
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <input type="submit" name="submit" class="btn btn-outline-danger" value="Invite">
-                                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <input type="submit" name="submit" class="btn btn-outline-danger" value="Invite">
+                </div>
 
             </form>
 
