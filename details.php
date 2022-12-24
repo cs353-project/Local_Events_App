@@ -72,7 +72,6 @@
                         echo '<a type="button" class="btn btn-outline-danger" href="profile.php">You have a ticket </a>';
                     }
 
-                    echo '<a type="button" class="btn btn-outline-danger" href="send_ticket.php">Invite </a>';
                     echo '</form>';
                 } else {
                     $query = "SELECT * FROM attend WHERE event_id = $eventID AND user_id = $userID";
@@ -85,8 +84,6 @@
                     }
                 }
                 ?>
-
-
 
             </div>
         </div>
@@ -128,21 +125,18 @@
                                 }
                             }
 
-                echo '<p>' . $count . ' likes</p>';
+                            echo '<p>' . $count . ' likes</p>';
 
+                            $show_like_query = "SELECT * FROM `like` WHERE user_id = $userID AND post_id = $postID";
+                            $show_result = mysqli_query($connection, $show_like_query);
 
-                $show_like_query = "SELECT * FROM `like` WHERE user_id = $userID AND post_id = $postID";
-                $show_result = mysqli_query($connection, $show_like_query);
-
-                if (mysqli_num_rows($show_result) <= 0)
-                {
-                    echo '<a href="form_process/like_process.php?event_id=' . $eventID . '&post_id=' . $postID . '" class="btn btn-primary">Like</a>';
-                }
-
-                echo' </div>';
-            }
-        }
-                            
+                            if (mysqli_num_rows($show_result) <= 0)
+                            {
+                                echo '<a href="form_process/like_process.php?event_id=' . $eventID . '&post_id=' . $postID . '" class="btn btn-primary">Like</a>';
+                            }
+                            echo' </div>';
+                        }
+                    }               
                     ?>
-                </div>
+            </div>
     </body>
