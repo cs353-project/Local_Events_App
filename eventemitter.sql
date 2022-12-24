@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 12:09 PM
+-- Generation Time: Dec 24, 2022 at 12:24 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -312,7 +312,7 @@ ALTER TABLE `location`
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`user_id`,`event_id`),
+  ADD PRIMARY KEY (`user_id`,`event_id`,`post_id`),
   ADD KEY `post_id` (`post_id`),
   ADD KEY `post_ibfk_2` (`event_id`);
 
@@ -490,3 +490,6 @@ ALTER TABLE `wallet`
   ADD CONSTRAINT `wallet_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
