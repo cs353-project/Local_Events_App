@@ -118,7 +118,8 @@
                 <div style="display:flex;">
                     
                     <?php
-                        $query = "SELECT * FROM event JOIN location ON event.location_id = location.location_id " . 
+                        $query = "SELECT * FROM event e JOIN location l ON e.location_id = l.location_id " . 
+                                "JOIN restriction r ON r.event_id = e.event_id";
                                 "WHERE event.creator_id = $userID";
                 
                         $result = mysqli_query($connection, $query);
@@ -129,8 +130,13 @@
                             echo '<h4 style="font-size: 16px; font-weight:bold;  ">' . $row["title"] . '</h4>';
                             echo '<h4 style="font-size: 12px;color:red;">' . $row["start_time"] . '</h4>';
                             echo '<h4 style="font-size: 12px; color:gray;">' . $row["address_city"] . ' ' . $row["address_street"] . '</h4>';
-                            echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . '" style="">Edit</a>';
-                            echo '<a type="button" class="btn btn-outline-danger" href="invitation.php?id=' . $row["event_id"] . '" style="padding-left:10px">Invite</a>';
+                            echo '<a type="button" class="btn btn-outline-danger" href="edit_event.php?id=' . $row["event_id"] . '" style="margin-right:5px">Edit</a>';
+                            echo '<a type="button" class="btn btn-outline-danger" href="invitation.php?id=' . $row["event_id"] . '" style="margin-right:5px">Invite</a>';
+                            if($row["pass_requirement"] != 'T')
+                            {
+                                echo '<a type="button" class="btn btn-outline-danger" href="form_process/remove_event_process.php?id=' . $row["event_id"] . '" style="">Remove</a>';
+                            }
+                            
                             echo '</div>';
                         }
                     ?>
