@@ -29,40 +29,7 @@
         $zero = 0;
         $type = $_POST["type"];
         $image = $_POST["image"];
-        if(isset($_POST['capacity_check']) && isset($_POST['capacity']) ) {
-            $capacity = $_POST["capacity"];
-        }
-        else{
-            $capacity = null;
-        }
-        if(isset($_POST['age_check']) && isset($_POST['age'])) {
-            $age = $_POST["age"];
-        }
-        else{
-            $age = null;
-        }
-        if(isset($_POST['gender_check']) && isset($_POST['gender']) ) {
-            if($gender == "male"){
-                $gender = "M";
-            }
-            else
-                $gender = "F";
-        }
-        else{
-            $gender = null;
-        }
-        if(isset($_POST['pass_requirement'])) {
-            $pass_requirement = "T";
-        }
-        else{
-            $pass_requirement = "I";
-        }
-        if(isset($_POST['price']) && isset($_POST['pass_requirement'])) {
-            $ticket_price = $_POST["price"];
-        }
-        else{
-            $ticket_price = null;
-        }
+        
         $mindate = date("Y-m-d");
         $mintime = date("h:i");
         $min = $mindate."T".$mintime;
@@ -85,7 +52,6 @@
             mysqli_real_escape_string($connection, $address_city);
             mysqli_real_escape_string($connection, $address_street);
             mysqli_real_escape_string($connection, $address_building);
-            mysqli_real_escape_string($connection, $capacity);
             mysqli_real_escape_string($connection, $description);
             $query2 = "INSERT INTO location ( address_city, address_street, address_building, online_address) " . 
             "VALUES ( '$address_city', '$address_street', '$address_building', '$online_address' )";
@@ -116,12 +82,94 @@
                 $ev_id = $row["event_id"];
             }
             $query3 = "INSERT INTO restriction ( event_id, capacity, age, gender, pass_requirement) " . 
-            "VALUES ( '$ev_id' ,'$capacity', '$age', '$gender', '$pass_requirement')";
+            "VALUES ( '$ev_id' , NULL, NULL, NULL, NULL)";
 
             $result3 = mysqli_query($connection, $query3);
             if (!$result3)
             {
                 mysqli_error();
+            }
+            if(isset($_POST['capacity_check']) && isset($_POST['capacity']) ) {
+                $capacity = $_POST["capacity"];
+                $query = "UPDATE restriction " . 
+                "SET capacity = '$capacity'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            else{
+                $capacity = null;
+            }
+            if(isset($_POST['age_check']) && isset($_POST['age'])) {
+                $age = $_POST["age"];
+                $query = "UPDATE restriction " . 
+                "SET age = '$age'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            else{
+                $age = null;
+            }
+            if(isset($_POST['gender_check']) && isset($_POST['gender']) ) {
+                if($gender == "male"){
+                    $gender = "M";
+                }
+                else
+                    $gender = "F";
+                $query = "UPDATE restriction " . 
+                "SET gender = '$gender'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            else{
+                $gender = null;
+            }
+            if(isset($_POST['pass_requirement'])) {
+                $pass_requirement = "T";
+                $query = "UPDATE restriction " . 
+                "SET pass_requirement = '$pass_requirement'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            else{
+                $pass_requirement = "I";
+                $query = "UPDATE restriction " . 
+                "SET pass_requirement = '$pass_requirement'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            if(isset($_POST['price']) && isset($_POST['pass_requirement'])) {
+                $ticket_price = $_POST["price"];
+                $query = "UPDATE restriction " . 
+                "SET ticket_price = '$ticket_price'".
+                "WHERE event_id = $ev_id";
+                $result3 = mysqli_query($connection, $query);
+                if (!$result3)
+                {
+                    mysqli_error($connection);
+                }
+            }
+            else{
+                $ticket_price = null;
             }
             header("Location: ../home_page.php?id=$eventID");
         }
