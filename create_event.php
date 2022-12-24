@@ -159,12 +159,14 @@
                                         <div class="form-outline mb-0 w-50">
                                         <label for="type">Event_type</label>
                                         <select id="type" name="type">
+                                        <option value="competition">Competition</option>
                                         <option value="festival">Festival</option>
                                         <option value="music">Music</option>
                                         <option value="sports">Sports</option>
                                         <option value="workshop">Workshop</option>
                                         <option value="art">Art</option>
                                         <option value="staged">Staged</option>
+                                        <option value="informational">Informational</option>
                                         </select>
                                         </div>
                                     </div>
