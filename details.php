@@ -109,7 +109,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<div class="col-4">
-                            <img src="musical-note.png" alt="Event Image" width="200" height="200">
+                            <img src="'.$row["photograph"].'" alt="Event Image" width="200" height="200">
                             <p>' . $row["text"] . '</p>';
 
                             $postID = $row["post_id"];
