@@ -69,7 +69,7 @@
 
             $creator_id = $_SESSION["id"];
             $query1 = "INSERT INTO event (  location_id, title, creator_id, description, type, registration_endtime, start_time, end_time, status, ticket_price, image) " . 
-            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active',NULL, '$image')";
+            "VALUES ('$loc_id', '$title', '$creator_id', '$description', '$type', '$registration_endtime', '$start_time', '$end_time','active','$zero', '$image')";
             $result1 = mysqli_query($connection, $query1);
             if (!$result1)
             {
@@ -159,7 +159,7 @@
             }
             if(isset($_POST['price']) && isset($_POST['pass_requirement'])) {
                 $ticket_price = $_POST["price"];
-                $query = "UPDATE restriction " . 
+                $query = "UPDATE event " . 
                 "SET ticket_price = '$ticket_price'".
                 "WHERE event_id = $ev_id";
                 $result3 = mysqli_query($connection, $query);
