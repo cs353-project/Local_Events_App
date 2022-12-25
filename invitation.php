@@ -72,7 +72,16 @@
                 $event_capacity = $row["current_capacity"];
             }
 
-            if( !is_null($res_age) && $user_age < $res_age )
+            $query = "SELECT * FROM attend WHERE user_id = $receiver_id AND event_id = $event_id";
+            $result = mysqli_query($connection, $query);
+
+            if (mysqli_num_rows($result) > 0)
+            {
+                echo "<script>alert('Receiver has already attended to this event');
+                window.location.href='profile.php';
+                </script>";
+            }
+            else if( !is_null($res_age) && $user_age < $res_age )
             {
                 echo "<script>alert('Receiver's age is not suitable for this event');
                 window.location.href='profile.php';
