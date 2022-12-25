@@ -151,7 +151,7 @@
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['u.first_name'] . ' ' . $row["u.middle_name"] . ' ' . $row["u.last_name"] . "</td>";
+                                        echo "<td>" . $row['first_name'] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . "</td>";
                                         echo "<td>" . $row['num_of_attend'] . "</td>";
                                     echo "</tr>";
                                 }
