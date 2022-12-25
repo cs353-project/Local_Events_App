@@ -115,8 +115,7 @@
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
+                            
                         } else{
                             echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
                         }
@@ -171,17 +170,72 @@
                     </div>
                     <form action="admin_page.php" method="post">
                         <div class="form-outline mb-4" style="width: 200;">
-                            <input type="text" name="month" class="form-control"/>
-                            <label class="form-label">Month</label>
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline mb-0 w-50">
+                                <label for="type">Month</label>
+                                <select name="month">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
                         </div>
                         <div>
-                            <input type="submit" name="submiy" value="Submit" class="btn btn-primary btn-lg">
+                            <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg">
                         </div>
                     </form>
                     <?php
                         if (isset($_POST["submit"]))
                         {
                             $month = $_POST["month"];
+                            
+                            $query = "SELECT * FROM event WHERE current_capacity IN (SELECT MAX(current_capacity) FROM event WHERE MONTH(start_time) = $month)";
+                            $result = mysqli_query($connection, $query);
+
+                            
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                echo '<table class="table table-bordered table-striped w-auto">';
+                                    echo "<thead>";
+                                        echo "<tr>";
+                                            echo "<th>ID</th>";
+                                            echo "<th>Title</th>";
+                                            echo "<th>Registeration End Time</th>";
+                                            echo "<th>Start Time</th>";
+                                            echo "<th>End Time</th>";
+                                            echo "<th>Current Capacity</th>";
+                                        echo "</tr>";
+                                    echo "</thead>";
+                                    echo "<tbody>";
+                                    while($row = mysqli_fetch_array($result))
+                                    {
+                                        echo "<tr>";
+                                            echo "<td>" . $row['event_id'] . "</td>";
+                                            echo "<td>" . $row['title'] . "</td>";
+                                            echo "<td>" . $row['registration_endtime'] . "</td>";
+                                            echo "<td>" . $row['start_time'] . "</td>";
+                                            echo "<td>" . $row['end_time'] . "</td>";
+                                            echo "<td>" . $row['current_capacity'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";                            
+                                echo "</table>";
+                            } 
+                            else
+                            {
+                                echo '<div class="alert alert-danger"><em>No events were found.</em></div>';
+                            }
                         }
                     ?>
                 </div>
