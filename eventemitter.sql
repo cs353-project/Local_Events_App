@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 12:24 PM
+-- Generation Time: Dec 26, 2022 at 12:16 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -33,6 +33,17 @@ CREATE TABLE `attend` (
   `pass_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `attend`
+--
+
+INSERT INTO `attend` (`user_id`, `event_id`, `pass_id`) VALUES
+(2, 28, NULL),
+(2, 29, NULL),
+(6, 28, NULL),
+(6, 29, NULL),
+(9, 28, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +54,13 @@ CREATE TABLE `buy` (
   `ticket_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `buy`
+--
+
+INSERT INTO `buy` (`ticket_id`, `user_id`) VALUES
+(41, 9);
 
 -- --------------------------------------------------------
 
@@ -80,6 +98,16 @@ CREATE TABLE `event` (
   `image` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`event_id`, `location_id`, `title`, `creator_id`, `description`, `type`, `registration_endtime`, `start_time`, `end_time`, `current_capacity`, `status`, `rating`, `ticket_price`, `image`) VALUES
+(28, 27, 'Kutu Oyunu', 6, 'Takımına güvenenleri bu oyuna bekleriz.', 'competition', '2023-01-01 19:16:00', '2023-01-08 19:14:00', '2023-01-08 23:14:00', 3, 'active', 0.0, 0.00, 'https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/81qy+MXuxDL._AC_SL1392_.jpg'),
+(29, 28, 'Kahoot Yarışması', 6, 'Ödülleri kazanmak istiyorsanız katılın.', 'competition', '2022-12-29 19:18:00', '2022-12-30 19:18:00', '2022-12-30 21:18:00', 2, 'active', 0.0, 0.00, 'https://cdn.mos.cms.futurecdn.net/oRMtEHPj8CxAvJ5P9BUp36.jpg'),
+(32, 31, 'Karaoke', 6, 'Mikrofonu al ve yeteneğini göster', 'music', '2023-01-03 11:12:00', '2023-01-07 11:12:00', '2023-01-07 15:12:00', 0, 'active', 0.0, 15.00, 'https://img.freepik.com/free-vector/karaoke-with-microphones-stars-neon-style_24908-60794.jpg?w=2000'),
+(33, 32, 'Weird', 9, '123123', 'competition', '2022-12-27 11:11:00', '2022-12-29 12:16:00', '2022-12-30 12:16:00', 0, 'active', 0.0, 0.00, '123123131');
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +118,16 @@ CREATE TABLE `event-pass` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event-pass`
+--
+
+INSERT INTO `event-pass` (`id`, `date`) VALUES
+(38, '2022-12-24 14:15:40'),
+(39, '2022-12-25 16:44:46'),
+(41, '2022-12-26 10:13:23'),
+(42, '2022-12-26 10:26:47');
 
 -- --------------------------------------------------------
 
@@ -104,6 +142,16 @@ CREATE TABLE `event-post` (
   `link` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `event-post`
+--
+
+INSERT INTO `event-post` (`post_id`, `text`, `photograph`, `link`) VALUES
+(7, 'aa', 'aa', 'aa'),
+(8, 'bb', 'bb', 'bb'),
+(9, 'Demo5 123', 'https://images.adsttc.com/media/images/5e04/2cbf/3312/fd20/9300/0019/large_jpg/174AJ20191106D0002.jpg?1577331892', '123123'),
+(10, '12312312', 'https://images.adsttc.com/media/images/5e04/2cbf/3312/fd20/9300/0019/large_jpg/174AJ20191106D0002.jpg?1577331892', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -115,6 +163,15 @@ CREATE TABLE `invitation` (
   `response` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `invitation`
+--
+
+INSERT INTO `invitation` (`id`, `response`) VALUES
+(38, 'accepted'),
+(39, NULL),
+(42, 'accepted');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +182,14 @@ CREATE TABLE `like` (
   `user_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `like`
+--
+
+INSERT INTO `like` (`user_id`, `post_id`) VALUES
+(2, 9),
+(9, 9);
 
 -- --------------------------------------------------------
 
@@ -140,6 +205,22 @@ CREATE TABLE `location` (
   `online_address` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`location_id`, `address_city`, `address_street`, `address_building`, `online_address`) VALUES
+(23, 'Antalya', 'Muratpaşa', 'Erkanlar Apartmanı', ''),
+(24, 'Antalya', 'Muratpaşa', 'Erkanlar Beach', ''),
+(25, 'aa', 'aa', 'aa', ''),
+(26, 'ss', 'ss', 'ss', ''),
+(27, 'Antalya', 'Muratpaşa Mah.', 'Erkanlar Apartmanı', ''),
+(28, 'Ankara', 'Bilkent', 'BZ-06', ''),
+(29, 'Ankara', 'Bilkent', 'BZ-01', ''),
+(30, 'Ankara', 'Çankaya', 'Armada', ''),
+(31, 'Yalova', 'Altınova', 'Merkez Mah.', ''),
+(32, 'Ankara', 'Bilkent', 'EA Building', '');
+
 -- --------------------------------------------------------
 
 --
@@ -151,6 +232,14 @@ CREATE TABLE `post` (
   `event_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`user_id`, `event_id`, `post_id`) VALUES
+(9, 28, 9),
+(9, 28, 10);
 
 -- --------------------------------------------------------
 
@@ -166,6 +255,16 @@ CREATE TABLE `restriction` (
   `pass_requirement` enum('T','I') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `restriction`
+--
+
+INSERT INTO `restriction` (`event_id`, `capacity`, `age`, `gender`, `pass_requirement`) VALUES
+(28, 50, NULL, NULL, 'I'),
+(29, 100, NULL, NULL, 'I'),
+(32, 200, 18, NULL, 'T'),
+(33, NULL, 21, NULL, 'I');
+
 -- --------------------------------------------------------
 
 --
@@ -178,6 +277,13 @@ CREATE TABLE `send` (
   `invitation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `send`
+--
+
+INSERT INTO `send` (`sender_id`, `receiver_id`, `invitation_id`) VALUES
+(2, 6, 42);
+
 -- --------------------------------------------------------
 
 --
@@ -188,6 +294,13 @@ CREATE TABLE `share` (
   `user_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `share`
+--
+
+INSERT INTO `share` (`user_id`, `location_id`) VALUES
+(2, 28);
 
 -- --------------------------------------------------------
 
@@ -200,6 +313,13 @@ CREATE TABLE `ticket` (
   `price` float(8,2) NOT NULL,
   `seating` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `price`, `seating`) VALUES
+(41, 150.00, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,9 +346,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `type`, `first_name`, `middle_name`, `last_name`, `dateOfBirth`, `age`, `gender`, `mail`, `password`, `rating`) VALUES
-(2, 'U', 'Recep', '', 'Uysal', '2000-12-13', 21, 'M', 'ruysal@gmail.com', '$2y$10$bJHT/wO.00Hw6vOkvOZgEeCNczllUKlUrZoLhy9Wxi13BoVcTo4aW', 0.0),
-(6, 'U', 'Efe', '', 'Erkan', '2000-09-01', 22, 'M', 'eferkan112@gmail.com', '$2y$10$Pu2Uso2OZgwjnPcNPKZHqecb1hyu9JEh5Tled9iQUsxzq3TODqP1a', 0.0),
-(7, 'U', 'aa', 'aa', 'aa', '1999-03-03', 23, 'M', 'a@a', '$2y$10$/hm0rrORdK7PM30pe.RBP.A8KOh0rTSD6LvSV2BjZK7yiQ6TpW5ju', 0.0);
+(2, 'U', 'Recep', NULL, 'Uysal', '2000-12-13', 21, 'M', 'ruysal@gmail.com', '$2y$10$bJHT/wO.00Hw6vOkvOZgEeCNczllUKlUrZoLhy9Wxi13BoVcTo4aW', 0.0),
+(6, 'U', 'Efe', 'Cevat', 'Erkan', '2015-02-05', 7, 'M', 'eferkan112@gmail.com', '$2y$10$Pu2Uso2OZgwjnPcNPKZHqecb1hyu9JEh5Tled9iQUsxzq3TODqP1a', 0.0),
+(8, 'A', 'admin', '', 'admin', '2020-06-05', 2, 'M', 'admin@admin', '$2y$10$q5Ae0ixwT4O9Q.QM2B0nHeEzFlqjyc2Pgq7Fj1.k8A7lkc8K4iyNW', 0.0),
+(9, 'U', 'Demo5', 'Demo5/', 'Demo5', '2001-12-04', 15, 'M', 'o@o.com', '$2y$10$IjMZLDOylIQYsk5LFLs.1e22cYYqcZnXaryVCDg9XFoHqVI1B7Fn2', 0.0);
 
 -- --------------------------------------------------------
 
@@ -241,6 +362,13 @@ CREATE TABLE `wallet` (
   `user_id` int(11) NOT NULL,
   `balance` float(8,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wallet`
+--
+
+INSERT INTO `wallet` (`wallet_id`, `user_id`, `balance`) VALUES
+(7, 9, 850.00);
 
 --
 -- Indexes for dumped tables
@@ -299,7 +427,7 @@ ALTER TABLE `invitation`
 -- Indexes for table `like`
 --
 ALTER TABLE `like`
-  ADD PRIMARY KEY (`user_id`),
+  ADD PRIMARY KEY (`user_id`,`post_id`),
   ADD KEY `post_id` (`post_id`);
 
 --
@@ -370,25 +498,25 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `event-pass`
 --
 ALTER TABLE `event-pass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `event-post`
 --
 ALTER TABLE `event-post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -400,7 +528,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
