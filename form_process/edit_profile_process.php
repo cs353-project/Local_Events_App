@@ -14,16 +14,9 @@
  
         // Query Processing
 
-        $dob = new DateTime($date);
- 
-        $now = new DateTime();
-            
-        $diff = $now->diff($dob);
-        $age = $diff->y;
-
         $query = "UPDATE user " . 
                 "SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', " . 
-                "gender = '$gender', age = $age, mail = '$mail' " . 
+                "gender = '$gender', mail = '$mail' " . 
                 "WHERE id = $userID";
 
         $result = mysqli_query($connection, $query);
